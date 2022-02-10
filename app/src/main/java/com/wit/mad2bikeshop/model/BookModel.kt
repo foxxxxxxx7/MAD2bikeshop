@@ -5,22 +5,23 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class BookModel(var id: Long = 0,
-                     val name: String = "N/A",
-                     val phoneNumber: String = "N/A",
-                     val email: String = "N/A",
+                     var name: String = "N/A",
+                     var phoneNumber: String = "N/A",
+                     var email: String = "N/A",
                     /* val pickup: Location= ??*/
                     /* val dropoff: Location= ??*/
                     /* val bikes: ArrayOfBikes = ??*/
                      /*val pickup: Location =*/
-                     val lat: Double = 0.0,
-                     val longitude: Double = 0.0,
+                     var lat: Double = 0.0,
+                     var longitude: Double = 0.0,
                      var zoom: Float = 0f,
-                     val pickup : String = "Waterford",
-                     val dropoff : String = "Dungarvan",
-                     val amount: Int = 0) : Parcelable
+                     var pickup : String = "Waterford",
+                     var dropoff : String = "Dungarvan",
+                     var price: Int = 0,
+                     var amount: Int = 0) : Parcelable
 
 @Parcelize
-data class Location(val lat: Double = 0.0,
-                    val longitude: Double = 0.0,
+data class Location(var lat: Double = 0.0,
+                    var longitude: Double = 0.0,
                     var zoom: Float = 0f,
-                    val depot : String = "Waterford") : Parcelable
+                    var depot : String = "Waterford") : Parcelable

@@ -31,4 +31,26 @@ class BookMemStore : BookStore {
         Timber.v("** Bookings List **")
         bookings.forEach { Timber.v("Book ${it}") }
     }
+
+    override fun delete(booking: BookModel) {
+        bookings.remove(booking)
+    }
+
+    override fun update(booking: BookModel) {
+        val foundBook: BookModel? = booking.find { p -> p.id == booking.id }
+        if (foundBook != null) {
+            foundBook.name = booking.name
+            foundBook.phoneNumber = booking.phoneNumber
+            foundBook.email = booking.email
+            foundBook.pickup = booking.pickup
+            foundBook.dropoff = booking.dropoff
+            foundBook.price = booking.price
+            /*foundBook.image = bike.image
+            foundBook.lat = bike.lat
+            foundBook.lng = bike.lng
+            foundBook.zoom = bike.zoom*/
+            logAll()
+        }
+    }
+
 }

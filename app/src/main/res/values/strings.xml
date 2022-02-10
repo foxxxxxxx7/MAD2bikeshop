@@ -2,6 +2,7 @@
     <string name="app_name">MAD2bikeshop</string>
     <string name="bookTitle">Make a Booking</string>
     <!--<string name="donateSubtitle">Please Give Generously</string>-->
+    <string name="enter_details">Please fill ALL fields</string>
     <string name="bookButton">Book Now!</string>
     <string name="pickupButton">Pick Up Location</string>
     <string name="dropoffButton">Drop Off Location</string>
