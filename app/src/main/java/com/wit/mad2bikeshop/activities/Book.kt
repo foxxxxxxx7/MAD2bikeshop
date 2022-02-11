@@ -1,7 +1,10 @@
 package com.wit.mad2bikeshop.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.databinding.ActivityBookBinding
 import com.wit.mad2bikeshop.main.BikeshopApp
@@ -46,4 +49,21 @@ class Book : AppCompatActivity() {
         setSupportActionBar(toolbarAdd)
     }*/
     }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_book, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        return when (item.itemId) {
+            R.id.action_bookinglist -> { startActivity(Intent(this, BookingList::class.java))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 }
