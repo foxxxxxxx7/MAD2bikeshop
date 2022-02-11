@@ -5,12 +5,24 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.wit.mad2bikeshop.R
+import com.wit.mad2bikeshop.adapters.BookAdapter
+import com.wit.mad2bikeshop.databinding.ActivityBookingListBinding
+import com.wit.mad2bikeshop.main.BikeshopApp
+
+lateinit var app: BikeshopApp
+lateinit var booklistLayout : ActivityBookingListBinding
 
 class BookingList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_booking_list)
+        booklistLayout = ActivityBookingListBinding.inflate(layoutInflater)
+        setContentView(booklistLayout.root)
+
+        app = this.application as BikeshopApp
+        booklistLayout.recyclerView.layoutManager = LinearLayoutManager(this)
+        booklistLayout.recyclerView.adapter = BookAdapter(app.bookStore.findAll())
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

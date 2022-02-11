@@ -29,8 +29,8 @@ class BookAdapter constructor(private var bookings: List<BookModel>)
 
         fun bind(booking: BookModel) {
             binding.name.text = booking.name
-            binding.phoneNumber.text = booking.phoneNumber.toString()
-            binding.date.text = booking.date
+            binding.phoneNumber.text = booking.phoneNumber
+            binding.date.text = booking.date.toString()
             binding.imageIcon.setImageResource(R.mipmap.ic_launcher_round)
         }
     }
