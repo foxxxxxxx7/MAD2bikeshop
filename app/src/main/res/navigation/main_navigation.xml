@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/bookFragment">
+    <fragment
+        android:id="@+id/bookFragment"
+        android:name="com.wit.mad2bikeshop.BookFragment"
+        android:label="fragment_book"
+        tools:layout="@layout/fragment_book" />
+    <fragment
+        android:id="@+id/bookingListFragment"
+        android:name="com.wit.mad2bikeshop.BookingListFragment"
+        android:label="fragment_booking_list"
+        tools:layout="@layout/fragment_booking_list" />
+</navigation>
