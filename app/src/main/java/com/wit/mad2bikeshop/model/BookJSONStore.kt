@@ -53,6 +53,7 @@ fun generateRandomId(): Long {
             val bookingsList = findAll() as ArrayList<BookModel>
             var foundBook: BookModel? = bookings.find { p -> p.id == booking.id }
             if (foundBook != null) {
+                foundBook.date = booking.date
                 foundBook.name = booking.name
                 foundBook.phoneNumber = booking.phoneNumber
                 foundBook.email = booking.email

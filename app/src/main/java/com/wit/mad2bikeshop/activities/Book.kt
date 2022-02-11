@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.CalendarView
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.databinding.ActivityBookBinding
 import com.wit.mad2bikeshop.main.BikeshopApp
@@ -12,6 +13,7 @@ import com.wit.mad2bikeshop.model.BookModel
 import timber.log.Timber
 import timber.log.Timber.*
 import android.widget.Toast
+import java.util.*
 
 
 class Book : AppCompatActivity() {
@@ -20,6 +22,7 @@ class Book : AppCompatActivity() {
     lateinit var app: BikeshopApp
     var booking = BookModel()
     var edit = false
+    var selectedDate: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +30,16 @@ class Book : AppCompatActivity() {
         bookLayout = ActivityBookBinding.inflate(layoutInflater)
         setContentView(bookLayout.root)
 
+        bookLayout.bookDate.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            // Note that months are indexed from 0. So, 0 means January, 1 means february, 2 means march etc.
+            selectedDate =  "" + dayOfMonth + "/" + (month + 1) + "/" + year
+
+        }
+
+
+
         bookLayout.bookButton.setOnClickListener() {
+            booking.date = selectedDate
             booking.name = bookLayout.bookName.text.toString()
             booking.phoneNumber = bookLayout.bookNumber.text.toString()
             booking.email = bookLayout.bookEmail.text.toString()
