@@ -10,6 +10,8 @@ import com.wit.mad2bikeshop.databinding.ActivityBookBinding
 import com.wit.mad2bikeshop.main.BikeshopApp
 import com.wit.mad2bikeshop.model.BookModel
 import timber.log.Timber
+import timber.log.Timber.*
+import android.widget.Toast
 
 
 class Book : AppCompatActivity() {
@@ -40,15 +42,16 @@ class Book : AppCompatActivity() {
                     app.bookStore.create(booking.copy())
                 }
             }
-            /* info("Add Button Pressed: $bookLayout.bookName, $bookLayout.bookNumber, $bookLayout.bookEmail")
-            setResult(AppCompatActivity.RESULT_OK)*/
+            print("Add Button Pressed: $bookLayout.bookName, $bookLayout.bookNumber, $bookLayout.bookEmail")
+            setResult(AppCompatActivity.RESULT_OK)
             finish()
         }
+    }
 
-        /*  toolbarAdd.name = name
+  /*      toolbarAdd.name = name
         setSupportActionBar(toolbarAdd)
     }*/
-    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_book, menu)
