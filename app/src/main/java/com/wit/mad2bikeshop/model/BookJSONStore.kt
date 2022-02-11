@@ -9,8 +9,6 @@ import com.google.gson.internal.Streams.write
 import com.google.gson.reflect.TypeToken
 import java.nio.file.Files.exists
 import java.util.*
-
-
 import com.google.gson.*
 import com.wit.mad2bikeshop.exists
 import com.wit.mad2bikeshop.read

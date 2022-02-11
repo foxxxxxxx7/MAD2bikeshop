@@ -8,17 +8,13 @@ data class BookModel(var id: Long = 0,
                      var name: String = "N/A",
                      var phoneNumber: String = "N/A",
                      var email: String = "N/A",
-                    /* val pickup: Location= ??*/
-                    /* val dropoff: Location= ??*/
-                    /* val bikes: ArrayOfBikes = ??*/
-                     /*val pickup: Location =*/
-                     var lat: Double = 0.0,
+                     /*var lat: Double = 0.0,
                      var longitude: Double = 0.0,
-                     var zoom: Float = 0f,
+                     var zoom: Float = 0f,*/
                      var pickup : String = "Waterford",
                      var dropoff : String = "Dungarvan",
                      var price: Int = 0,
-                     var amount: Int = 0) : Parcelable
+                     /*var amount: Int = 0*/) : Parcelable
 
 @Parcelize
 data class Location(var lat: Double = 0.0,
