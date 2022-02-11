@@ -37,7 +37,7 @@ class BookMemStore : BookStore {
     }
 
     override fun update(booking: BookModel) {
-        val foundBook: BookModel? = booking.find { p -> p.id == booking.id }
+        val foundBook: BookModel? = bookings.find { p -> p.id == booking.id }
         if (foundBook != null) {
             foundBook.name = booking.name
             foundBook.phoneNumber = booking.phoneNumber

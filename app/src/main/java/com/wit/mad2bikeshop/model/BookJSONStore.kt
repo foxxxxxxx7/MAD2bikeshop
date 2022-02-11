@@ -1,13 +1,13 @@
 package com.wit.mad2bikeshop.model
 
 import android.content.Context
+import android.system.Os.read
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.internal.Streams.write
 import com.google.gson.reflect.TypeToken
 import java.nio.file.Files.exists
 import java.util.*
-
-
-
 
 val JSON_FILE = "bookings.json"
 val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
@@ -32,45 +32,50 @@ class BookJSONStore : BookStore{
         return bookings
     }
 
+    override fun findById(id: Long): BookModel? {
+        TODO("Not yet implemented")
+    }
+
     override fun create(booking: BookModel) {
         booking.id = generateRandomId()
-        booking.add(bike)
+        bookings.add(booking)
         serialize()
     }
 
 
-    override fun update(bike: BikeShopModel) {
-        val bikesList = findAll() as ArrayList<BikeShopModel>
-        var foundBike: BikeShopModel? = bikesList.find { p -> p.id == bike.id }
-        if (foundBike != null) {
-            foundBike.title = bike.title
-            foundBike.size = bike.size
-            foundBike.style = bike.style
-            foundBike.gender = bike.gender
-            foundBike.price = bike.price
-            foundBike.condition = bike.condition
-            foundBike.comment = bike.comment
-            foundBike.image = bike.image
-            foundBike.lat = bike.lat
-            foundBike.lng = bike.lng
-            foundBike.zoom = bike.zoom
+    override fun update(booking: BookModel) {
+        val bookingsList = findAll() as ArrayList<BookModel>
+        var foundBook: BookModel? = bookings.find { p -> p.id == booking.id }
+        if (foundBook != null) {
+            foundBook.name = booking.name
+            foundBook.phoneNumber = booking.phoneNumber
+            foundBook.email = booking.email
+            foundBook.pickup = booking.pickup
+            foundBook.dropoff = booking.dropoff
+            foundBook.price = booking.price
+            /*foundBook.condition = booking.condition
+            foundBook.comment = booking.comment
+            foundBook.image = booking.image
+            foundBook.lat = booking.lat
+            foundBook.lng = booking.lng
+            foundBook.zoom = booking.zoom*/
         }
         serialize()
     }
 
 
     private fun serialize() {
-        val jsonString = gsonBuilder.toJson(bikes, listType)
+        val jsonString = gsonBuilder.toJson(bookings, listType)
         write(context, JSON_FILE, jsonString)
     }
 
     private fun deserialize() {
         val jsonString = read(context, JSON_FILE)
-        bikes = Gson().fromJson(jsonString, listType)
+        bookings = Gson().fromJson(jsonString, listType)
     }
 
-    override fun delete(bike: BikeShopModel) {
-        bikes.remove(bike)
+    override fun delete(booking: BookModel) {
+        bookings.remove(booking)
         serialize()
     }
 }
