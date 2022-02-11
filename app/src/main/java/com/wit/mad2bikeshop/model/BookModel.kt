@@ -13,7 +13,7 @@ data class BookModel(var id: Long = 0,
                      var zoom: Float = 0f,*/
                      var pickup : String = "Waterford",
                      var dropoff : String = "Dungarvan",
-                     var price: Int = 0,
+                     var price: Double = 0.0,
                      /*var amount: Int = 0*/) : Parcelable
 
 @Parcelize

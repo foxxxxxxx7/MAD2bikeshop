@@ -44,13 +44,16 @@ class Book : AppCompatActivity() {
             }
             print("Add Button Pressed: $bookLayout.bookName, $bookLayout.bookNumber, $bookLayout.bookEmail")
             setResult(AppCompatActivity.RESULT_OK)
-            finish()
+            if (edit){
+                finish()
+            }
+            /*finish()*/
         }
-    }
 
-  /*      toolbarAdd.name = name
-        setSupportActionBar(toolbarAdd)
-    }*/
+
+       /* toolbarAdd.name = name
+        setSupportActionBar(toolbarAdd)*/
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
