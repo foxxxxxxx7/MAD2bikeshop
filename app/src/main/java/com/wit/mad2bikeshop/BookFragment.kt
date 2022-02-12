@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.wit.mad2bikeshop.databinding.ActivityBookBinding
 import com.wit.mad2bikeshop.databinding.FragmentBookBinding
-import com.wit.mad2bikeshop.databinding.FragmentBookingListBinding
 import com.wit.mad2bikeshop.main.BikeshopApp
 import com.wit.mad2bikeshop.model.BookModel
 
@@ -53,7 +51,7 @@ class BookFragment : Fragment() {
         _fragBinding = null
     }
 
-    fun setButtonListener(layout: FragmentBookingListBinding) {
+    fun setButtonListener(BookLayout: FragmentBookBinding) {
         bookLayout.bookButton.setOnClickListener {
             booking.date = selectedDate
             booking.name = bookLayout.bookName.text.toString()
@@ -68,10 +66,10 @@ class BookFragment : Fragment() {
                     app.bookStore.update(booking.copy())
                 } else {
                     app.bookStore.create(booking.copy())
+                    print("Add Button Pressed: $bookLayout.bookName, $bookLayout.bookNumber, $bookLayout.bookEmail")
                 }
             }
-            print("Add Button Pressed: $bookLayout.bookName, $bookLayout.bookNumber, $bookLayout.bookEmail")
-            setResult(AppCompatActivity.RESULT_OK)
         }
+
     }
 }
