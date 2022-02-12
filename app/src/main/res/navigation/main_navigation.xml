@@ -6,12 +6,12 @@
     app:startDestination="@id/bookFragment">
     <fragment
         android:id="@+id/bookFragment"
-        android:name="com.wit.mad2bikeshop.BookFragment"
+        android:name="com.wit.mad2bikeshop.fragments.BookFragment"
         android:label="fragment_book"
         tools:layout="@layout/fragment_book" />
     <fragment
         android:id="@+id/bookingListFragment"
-        android:name="com.wit.mad2bikeshop.BookingListFragment"
+        android:name="com.wit.mad2bikeshop.fragments.BookingListFragment"
         android:label="fragment_booking_list"
         tools:layout="@layout/fragment_booking_list" />
 </navigation>

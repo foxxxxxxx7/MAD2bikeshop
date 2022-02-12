@@ -1,4 +1,4 @@
-package com.wit.mad2bikeshop
+package com.wit.mad2bikeshop.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.databinding.ActivityBookBinding
 import com.wit.mad2bikeshop.databinding.FragmentBookBinding
 import com.wit.mad2bikeshop.main.BikeshopApp
@@ -23,8 +24,8 @@ class BookFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        app = activity?.application as BikeshopApp
         super.onCreate(savedInstanceState)
+        app = activity?.application as BikeshopApp
     }
 
     override fun onCreateView(
