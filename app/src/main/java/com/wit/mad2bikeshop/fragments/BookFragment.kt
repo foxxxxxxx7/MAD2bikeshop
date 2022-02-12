@@ -33,9 +33,12 @@ class BookFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
+
         _fragBinding = FragmentBookBinding.inflate(inflater, container, false)
         val root = fragBinding.root
         activity?.title = getString(R.string.action_book)
+        setButtonListener(fragBinding)
         return root;
     }
 
@@ -68,7 +71,7 @@ class BookFragment : Fragment() {
                 } else {
                     app.bookStore.create(booking.copy())
                     print("Add Button Pressed: $layout.bookName, $layout.bookNumber, $layout.bookEmail")
-                    /* setResult(AppCompatActivity.RESULT_OK)*/
+                    /*setResult(AppCompatActivity.RESULT_OK)*/
                 }
             }
         }
