@@ -70,6 +70,11 @@ class BookFragment : Fragment() {
                     print("Add Button Pressed: $bookLayout.bookName, $bookLayout.bookNumber, $bookLayout.bookEmail")
                 }
             }
+<<<<<<< Updated upstream:app/src/main/java/com/wit/mad2bikeshop/fragments/BookFragment.kt
+=======
+            print("Add Button Pressed: $bookLayout.bookName, $bookLayout.bookNumber, $bookLayout.bookEmail")
+            /*setResult(AppCompatActivity.RESULT_OK)*/
+>>>>>>> Stashed changes:app/src/main/java/com/wit/mad2bikeshop/BookFragment.kt
         }
 
     }
