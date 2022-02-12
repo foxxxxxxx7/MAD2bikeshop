@@ -1,20 +1,19 @@
 package com.wit.mad2bikeshop.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.wit.mad2bikeshop.R
-import com.wit.mad2bikeshop.databinding.ActivityBookBinding
 import com.wit.mad2bikeshop.databinding.FragmentBookBinding
 import com.wit.mad2bikeshop.main.BikeshopApp
 import com.wit.mad2bikeshop.model.BookModel
 
 class BookFragment : Fragment() {
 
-    private lateinit var bookLayout: ActivityBookBinding
     lateinit var app: BikeshopApp
     var booking = BookModel()
     var edit = false
@@ -26,6 +25,7 @@ class BookFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = activity?.application as BikeshopApp
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -52,14 +52,14 @@ class BookFragment : Fragment() {
         _fragBinding = null
     }
 
-    fun setButtonListener(BookLayout: FragmentBookBinding) {
-        bookLayout.bookButton.setOnClickListener {
+    fun setButtonListener(layout: FragmentBookBinding) {
+        layout.bookButton.setOnClickListener {
             booking.date = selectedDate
-            booking.name = bookLayout.bookName.text.toString()
-            booking.phoneNumber = bookLayout.bookNumber.text.toString()
-            booking.email = bookLayout.bookEmail.text.toString()
-            booking.pickup = bookLayout.bookPickup.text.toString()
-            booking.dropoff = bookLayout.bookDropoff.text.toString()
+            booking.name = layout.bookName.text.toString()
+            booking.phoneNumber = layout.bookNumber.text.toString()
+            booking.email = layout.bookEmail.text.toString()
+            booking.pickup = layout.bookPickup.text.toString()
+            booking.dropoff = layout.bookDropoff.text.toString()
             if (booking.name.isEmpty() || booking.phoneNumber.isEmpty() || booking.email.isEmpty() || booking.pickup.isEmpty() || booking.dropoff.isEmpty()) {
                 Toast.makeText(context, "Please complete ALL fields", Toast.LENGTH_LONG).show()
             } else {
@@ -67,15 +67,18 @@ class BookFragment : Fragment() {
                     app.bookStore.update(booking.copy())
                 } else {
                     app.bookStore.create(booking.copy())
-                    print("Add Button Pressed: $bookLayout.bookName, $bookLayout.bookNumber, $bookLayout.bookEmail")
+                    print("Add Button Pressed: $layout.bookName, $layout.bookNumber, $layout.bookEmail")
+                    /* setResult(AppCompatActivity.RESULT_OK)*/
                 }
             }
-<<<<<<< Updated upstream:app/src/main/java/com/wit/mad2bikeshop/fragments/BookFragment.kt
-=======
-            print("Add Button Pressed: $bookLayout.bookName, $bookLayout.bookNumber, $bookLayout.bookEmail")
-            /*setResult(AppCompatActivity.RESULT_OK)*/
->>>>>>> Stashed changes:app/src/main/java/com/wit/mad2bikeshop/BookFragment.kt
         }
-
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_book, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(item,
+            requireView().findNavController()) || super.onOptionsItemSelected(item)
     }
 }

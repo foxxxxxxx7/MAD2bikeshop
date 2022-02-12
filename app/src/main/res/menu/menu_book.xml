@@ -3,8 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_bookinglist"
+        android:id="@+id/bookingListFragment"
         android:orderInCategory="100"
         android:title="@string/action_booklist"
         app:showAsAction="never" />
 </menu>
+

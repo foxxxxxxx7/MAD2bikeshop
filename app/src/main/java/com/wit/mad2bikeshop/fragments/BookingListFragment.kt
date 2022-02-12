@@ -20,6 +20,7 @@ class BookingListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = activity?.application as BikeshopApp
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
