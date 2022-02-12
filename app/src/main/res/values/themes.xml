@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.DonationX" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.MAD2bikeshop." parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -13,12 +13,13 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.DonationX.NoActionBar">
+    <style name="Theme.MAD2bikeshop.NoActionBar">
+
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.DonationX.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.MAD2bikeshop.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.DonationX.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.MAD2bikeshop.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
