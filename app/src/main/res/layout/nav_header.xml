@@ -14,11 +14,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="100dp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/nav_header_image" />
+        app:srcCompat="@drawable/ic_book_nav_header" />
 
     <TextView
         android:layout_width="match_parent"
@@ -30,8 +30,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="20dp"
         android:text="@string/nav_header_subtitle"
         android:textStyle="italic" />
 
