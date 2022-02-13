@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,48 +12,56 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/buttonUpdate"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="4dp"
             android:layout_toEndOf="@+id/name"
-            android:text="DATE"
+            android:text="@string/update"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phoneNumber"
+            android:layout_marginTop="10dp"
+            android:text="@string/date"
             android:textSize="24sp" />
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="121dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="0dp"
             android:textSize="24sp"
-            tools:text="NAME" />
+            tools:text="@string/name" />
 
         <TextView
             android:id="@+id/phoneNumber"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="1dp"
-            android:layout_toEndOf="@+id/name"
-            android:text="Number"
+            android:layout_below="@+id/buttonUpdate"
+            android:layout_marginTop="10dp"
+            android:text="@string/phoneNumber"
             android:textSize="24sp" />
 
         <Button
             android:id="@+id/buttonDelete"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_below="@+id/buttonUpdate"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="30dp"
-            android:layout_toEndOf="@+id/phoneNumber"
-            android:text="Delete"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="56dp"
+            android:layout_toEndOf="@+id/date"
+            android:text="@string/delete"
             android:textSize="16sp" />
 
     </RelativeLayout>
