@@ -1,17 +1,22 @@
 package com.wit.mad2bikeshop.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.adapters.BookAdapter
+import com.wit.mad2bikeshop.adapters.BookListener
+import com.wit.mad2bikeshop.databinding.FragmentBookBinding
 import com.wit.mad2bikeshop.databinding.FragmentBookingListBinding
 import com.wit.mad2bikeshop.main.BikeshopApp
+import com.wit.mad2bikeshop.model.BookModel
 
-class BookingListFragment : Fragment() {
+class BookingListFragment : Fragment(), BookListener {
 
     lateinit var app: BikeshopApp
     private var _fragBinding: FragmentBookingListBinding? = null
@@ -31,8 +36,8 @@ class BookingListFragment : Fragment() {
         val root = fragBinding.root
         activity?.title = getString(R.string.action_booklist)
         fragBinding.recyclerView.setLayoutManager(LinearLayoutManager(activity))
-        fragBinding.recyclerView.adapter = BookAdapter(app.bookStore.findAll())
 
+        showBookings()
         return root
     }
 
@@ -48,4 +53,20 @@ class BookingListFragment : Fragment() {
         super.onDestroyView()
         _fragBinding = null
     }
+    @SuppressLint("NotifyDataSetChanged")
+    private fun showBookings(bookings: List<BookModel>) {
+        view?.findViewById<RecyclerView>(R.id.recyclerView)?.adapter =
+            BookAdapter(bookings, this@BookingListFragment)
+        view?.findViewById<RecyclerView>(R.id.recyclerView)?.adapter?.notifyDataSetChanged()
+    }
+
+    override fun onDeleteBooking(booking: BookModel) {
+        print("delete")
+
+    }
+
+    override fun onUpdateBooking(booking: BookModel) {
+     print("update")
+    }
+
 }
