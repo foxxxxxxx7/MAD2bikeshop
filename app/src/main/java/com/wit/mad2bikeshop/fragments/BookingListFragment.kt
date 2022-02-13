@@ -35,9 +35,8 @@ class BookingListFragment : Fragment(), BookListener {
         _fragBinding = FragmentBookingListBinding.inflate(inflater, container, false)
         val root = fragBinding.root
         activity?.title = getString(R.string.action_booklist)
-        fragBinding.recyclerView.setLayoutManager(LinearLayoutManager(activity))
-
-        showBookings()
+        fragBinding.recyclerView.layoutManager = LinearLayoutManager(activity)
+        showBookings(app.bookStore.findAll())
         return root
     }
 
@@ -53,7 +52,7 @@ class BookingListFragment : Fragment(), BookListener {
         super.onDestroyView()
         _fragBinding = null
     }
-    @SuppressLint("NotifyDataSetChanged")
+
     private fun showBookings(bookings: List<BookModel>) {
         view?.findViewById<RecyclerView>(R.id.recyclerView)?.adapter =
             BookAdapter(bookings, this@BookingListFragment)
@@ -61,7 +60,7 @@ class BookingListFragment : Fragment(), BookListener {
     }
 
     override fun onDeleteBooking(booking: BookModel) {
-        print("delete")
+        app.bookStore.delete(booking)
 
     }
 
