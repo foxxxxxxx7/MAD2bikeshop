@@ -36,7 +36,8 @@ class BookingListFragment : Fragment(), BookListener {
         val root = fragBinding.root
         activity?.title = getString(R.string.action_booklist)
         fragBinding.recyclerView.layoutManager = LinearLayoutManager(activity)
-        showBookings(app.bookStore.findAll())
+        fragBinding.recyclerView.adapter = BookAdapter(app.bookStore.findAll(), this@BookingListFragment)
+
         return root
     }
 
@@ -61,11 +62,13 @@ class BookingListFragment : Fragment(), BookListener {
 
     override fun onDeleteBooking(booking: BookModel) {
         app.bookStore.delete(booking)
+        showBookings(app.bookStore.findAll())
 
     }
 
     override fun onUpdateBooking(booking: BookModel) {
-     print("update")
+        print("update")
     }
+
 
 }

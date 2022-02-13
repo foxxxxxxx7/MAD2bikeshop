@@ -37,7 +37,7 @@ class BookAdapter constructor(private var bookings: List<BookModel>, private val
             binding.buttonDelete.setOnClickListener { listener.onDeleteBooking(booking) }
             binding.buttonUpdate.setOnClickListener { listener.onUpdateBooking(booking) }
 
-           /* binding.imageIcon.setImageResource(R.mipmap.ic_launcher_round)*/
+            /* binding.imageIcon.setImageResource(R.mipmap.ic_launcher_round)*/
         }
 
 
