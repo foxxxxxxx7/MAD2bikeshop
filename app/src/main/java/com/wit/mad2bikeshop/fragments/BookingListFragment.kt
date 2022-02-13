@@ -67,7 +67,7 @@ class BookingListFragment : Fragment(), BookListener {
     }
 
     override fun onUpdateBooking(booking: BookModel) {
-        print("update")
+        app.bookStore.update(booking)
     }
 
 
