@@ -11,7 +11,7 @@ import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.databinding.HomeBinding
 
 private lateinit var drawerLayout: DrawerLayout
-private lateinit var homeBinding : HomeBinding
+private lateinit var homeBinding: HomeBinding
 
 
 class Home : AppCompatActivity() {

@@ -11,8 +11,10 @@ interface BookListener {
     fun onUpdateBooking(booking: BookModel)
 }
 
-class BookAdapter constructor(private var bookings: List<BookModel>, private val listener: BookListener)
-    : RecyclerView.Adapter<BookAdapter.MainHolder>() {
+class BookAdapter constructor(
+    private var bookings: List<BookModel>,
+    private val listener: BookListener
+) : RecyclerView.Adapter<BookAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         val binding = CardBookBinding
@@ -28,7 +30,7 @@ class BookAdapter constructor(private var bookings: List<BookModel>, private val
 
     override fun getItemCount(): Int = bookings.size
 
-    inner class MainHolder(val binding : CardBookBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MainHolder(val binding: CardBookBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(booking: BookModel, listener: BookListener) {
             binding.name.text = booking.name
@@ -39,7 +41,6 @@ class BookAdapter constructor(private var bookings: List<BookModel>, private val
 
             /* binding.imageIcon.setImageResource(R.mipmap.ic_launcher_round)*/
         }
-
 
 
     }

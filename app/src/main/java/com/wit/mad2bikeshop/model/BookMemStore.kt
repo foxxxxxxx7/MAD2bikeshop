@@ -16,7 +16,7 @@ class BookMemStore : BookStore {
         return bookings
     }
 
-    override fun findById(id:Long) : BookModel? {
+    override fun findById(id: Long): BookModel? {
         val foundBook: BookModel? = bookings.find { it.id == id }
         return foundBook
     }

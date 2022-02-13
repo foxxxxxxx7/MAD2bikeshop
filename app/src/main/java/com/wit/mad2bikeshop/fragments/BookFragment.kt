@@ -22,7 +22,6 @@ class BookFragment : Fragment() {
     private val fragBinding get() = _fragBinding!!
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = activity?.application as BikeshopApp
@@ -33,7 +32,6 @@ class BookFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
 
 
         _fragBinding = FragmentBookBinding.inflate(inflater, container, false)
@@ -78,12 +76,16 @@ class BookFragment : Fragment() {
             }
         }
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_book, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(item,
-            requireView().findNavController()) || super.onOptionsItemSelected(item)
+        return NavigationUI.onNavDestinationSelected(
+            item,
+            requireView().findNavController()
+        ) || super.onOptionsItemSelected(item)
     }
 }
