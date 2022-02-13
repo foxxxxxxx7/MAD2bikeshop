@@ -7,6 +7,11 @@
     <string name="pickupButton">Pick Up Location</string>
     <string name="dropoffButton">Drop Off Location</string>
     <string name="bikeButton">Choose Bikes</string>
+    <string name="bikeMale">Adult Male Bike</string>
+    <string name="adultFemale">Adult Female Bike</string>
+    <string name="electric">Electric Bike</string>
+    <string name="kids">Kids Bike</string>
+
     <string name="name">Name</string>
     <string name="phoneNumber">Phone Number</string>
     <string name="email">Email</string>

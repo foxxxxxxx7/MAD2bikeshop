@@ -22,6 +22,7 @@ class BookFragment : Fragment() {
     private val fragBinding get() = _fragBinding!!
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = activity?.application as BikeshopApp
@@ -49,6 +50,7 @@ class BookFragment : Fragment() {
                 arguments = Bundle().apply {}
             }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

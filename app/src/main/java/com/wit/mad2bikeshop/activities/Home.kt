@@ -13,7 +13,9 @@ import com.wit.mad2bikeshop.databinding.HomeBinding
 private lateinit var drawerLayout: DrawerLayout
 private lateinit var homeBinding : HomeBinding
 
+
 class Home : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         homeBinding = HomeBinding.inflate(layoutInflater)
@@ -28,6 +30,7 @@ class Home : AppCompatActivity() {
         val navView = homeBinding.navView
         navView.setupWithNavController(navController)
     }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return NavigationUI.navigateUp(navController, drawerLayout)

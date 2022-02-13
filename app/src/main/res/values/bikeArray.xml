@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="bikeArray">
+        <item>Adult Male Bike</item>
+        <item>Adult Female Bike</item>
+        <item>Electric Bike</item>
+        <item>Kids Bike</item>
+        <item>Male Racing Bike</item>
+        <item>Female Racing Bike</item>
+    </array>
+</resources>
