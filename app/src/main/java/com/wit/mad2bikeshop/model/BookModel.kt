@@ -14,8 +14,8 @@ data class BookModel(
     /*var lat: Double = 0.0,
     var longitude: Double = 0.0,
     var zoom: Float = 0f,*/
-    var pickup: String = "Waterford",
-    var dropoff: String = "Dungarvan",
+    var pickup: String = "",
+    var dropoff: String = "",
     var price: Double = 0.0,
     /*var amount: Int = 0*/
 ) : Parcelable

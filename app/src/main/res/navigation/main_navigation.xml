@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/bookFragment"
         android:name="com.wit.mad2bikeshop.fragments.BookFragment"
-        android:label="fragment_book"
+        android:label="@string/action_book"
         tools:layout="@layout/fragment_book">
         <action
             android:id="@+id/action_bookFragment_to_bookingListFragment"
@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/bookingListFragment"
         android:name="com.wit.mad2bikeshop.fragments.BookingListFragment"
-        android:label="fragment_booking_list"
+        android:label="@string/action_booklist"
         tools:layout="@layout/fragment_booking_list">
         <action
             android:id="@+id/action_bookingListFragment_to_bookFragment"
