@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/bookFragment">
+    app:startDestination="@id/bookingListFragment">
     <fragment
         android:id="@+id/bookFragment"
         android:name="com.wit.mad2bikeshop.fragments.BookFragment"

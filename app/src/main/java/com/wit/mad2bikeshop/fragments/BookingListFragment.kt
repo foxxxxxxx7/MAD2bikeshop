@@ -2,29 +2,36 @@ package com.wit.mad2bikeshop.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.adapters.BookAdapter
 import com.wit.mad2bikeshop.adapters.BookListener
 import com.wit.mad2bikeshop.databinding.FragmentBookBinding
 import com.wit.mad2bikeshop.databinding.FragmentBookingListBinding
 import com.wit.mad2bikeshop.main.BikeshopApp
+import com.wit.mad2bikeshop.model.BookManager
+import com.wit.mad2bikeshop.model.BookManager.bookings
 import com.wit.mad2bikeshop.model.BookModel
 
 class BookingListFragment : Fragment(), BookListener {
 
-    lateinit var app: BikeshopApp
+  //  lateinit var app: BikeshopApp
     private var _fragBinding: FragmentBookingListBinding? = null
     private val fragBinding get() = _fragBinding!!
+    private lateinit var bookingListViewModel: BookingListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        app = activity?.application as BikeshopApp
+       // app = activity?.application as BikeshopApp
         setHasOptionsMenu(true)
     }
 
@@ -36,19 +43,55 @@ class BookingListFragment : Fragment(), BookListener {
         val root = fragBinding.root
         activity?.title = getString(R.string.action_booklist)
         fragBinding.recyclerView.layoutManager = LinearLayoutManager(activity)
-        fragBinding.recyclerView.adapter =
-            BookAdapter(app.bookStore.findAll(), this@BookingListFragment)
+        //fragBinding.recyclerView.adapter =
+          //  BookAdapter(app.bookStore.findAll(), this@BookingListFragment)
+        bookingListViewModel = ViewModelProvider(this).get(BookingListViewModel::class.java)
+        bookingListViewModel.observableBookingList.observe(viewLifecycleOwner, Observer {
+                donations ->
+            donations?.let { render(bookings) }
+        })
 
+        val fab: FloatingActionButton = fragBinding.fab
+        fab.setOnClickListener {
+            val action = BookingListFragmentDirections.actionBookingListFragmentToBookFragment()
+            findNavController().navigate(action)
+        }
         return root
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            BookingListFragment().apply {
-                arguments = Bundle().apply { }
-            }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_booking_list, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(item,
+            requireView().findNavController()) || super.onOptionsItemSelected(item)
+    }
+
+    private fun render(bookingList: List<BookModel>) {
+        fragBinding.recyclerView.adapter = BookAdapter(bookingList, this )
+        if (bookingList.isEmpty()) {
+            fragBinding.recyclerView.visibility = View.GONE
+            fragBinding.bookingsNotFound.visibility = View.VISIBLE
+        } else {
+            fragBinding.recyclerView.visibility = View.VISIBLE
+            fragBinding.bookingsNotFound.visibility = View.GONE
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        bookingListViewModel.load()
+    }
+
+//    companion object {
+//        @JvmStatic
+//        fun newInstance() =
+//            BookingListFragment().apply {
+//                arguments = Bundle().apply { }
+//            }
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -62,13 +105,14 @@ class BookingListFragment : Fragment(), BookListener {
     }
 
     override fun onDeleteBooking(booking: BookModel) {
-        app.bookStore.delete(booking)
-        showBookings(app.bookStore.findAll())
+        bookingListViewModel.del(booking)
+        bookingListViewModel.load()
+        showBookings(bookingListViewModel.findAll())
 
     }
 
     override fun onUpdateBooking(booking: BookModel) {
-        app.bookStore.update(booking)
+        showBookings(bookingListViewModel.findAll())
     }
 
 

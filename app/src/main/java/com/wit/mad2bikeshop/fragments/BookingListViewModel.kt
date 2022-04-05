@@ -17,7 +17,14 @@ class BookingListViewModel : ViewModel() {
         load()
     }
 
+    fun findAll(): List<BookModel> {
+        return BookManager.bookings
+    }
+
     fun load() {
         bookingList.value = BookManager.findAll()
+    }
+    fun del(bookModel: BookModel){
+        BookManager.delete(bookModel)
     }
 }
