@@ -8,7 +8,7 @@ internal fun getId(): Long {
     return lastId++
 }
 
-class BookMemStore : BookStore {
+object BookManager : BookStore {
 
     val bookings = ArrayList<BookModel>()
 
