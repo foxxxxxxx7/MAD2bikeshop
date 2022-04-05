@@ -25,6 +25,7 @@
     <string name="emailHint">Please Enter Your Email Address:</string>
     <string name="pickupHint">Please Enter Pick Up Location:</string>
     <string name="dropoffHint">Please Enter Drop Off Location:</string>
+    <string name="bookingsNotFound">Nothing Booked Yet...\nGo Make a Booking!</string>
     <!--   <string name="reportTitle">Donations Report</string>-->
     <string name="update">Update</string>
     <string name="delete">Delete</string>
