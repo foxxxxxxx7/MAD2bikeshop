@@ -39,8 +39,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/phoneNumber"
             android:layout_marginTop="10dp"
-            android:text="@string/date"
+            android:text="@{booking.date}"
             android:textSize="24sp" />
+        //android:text="@string/date"
 
         <TextView
             android:id="@+id/name"
@@ -50,6 +51,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginTop="0dp"
             android:textSize="24sp"
+            android:text="@{booking.name}"
             tools:text="@string/name" />
 
         <TextView
@@ -58,8 +60,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/buttonUpdate"
             android:layout_marginTop="10dp"
-            android:text="@string/phoneNumber"
+            android:text="@{booking.phoneNumber}"
             android:textSize="24sp" />
+        //android:text="@string/phoneNumber"
 
         <Button
             android:id="@+id/buttonDelete"

@@ -33,12 +33,14 @@ class BookAdapter constructor(
     inner class MainHolder(val binding: CardBookBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(booking: BookModel, listener: BookListener) {
-            binding.name.text = booking.name
-            binding.phoneNumber.text = booking.phoneNumber
-            binding.date.text = booking.date
+            binding.booking = booking
+//            binding.name.text = booking.name
+//            binding.phoneNumber.text = booking.phoneNumber
+//            binding.date.text = booking.date
             binding.buttonDelete.setOnClickListener { listener.onDeleteBooking(booking) }
             binding.buttonUpdate.setOnClickListener { listener.onUpdateBooking(booking) }
 
+            binding.executePendingBindings()
             /* binding.imageIcon.setImageResource(R.mipmap.ic_launcher_round)*/
         }
 
