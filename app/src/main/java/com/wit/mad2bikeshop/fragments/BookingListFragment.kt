@@ -3,6 +3,7 @@ package com.wit.mad2bikeshop.fragments
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -43,12 +44,13 @@ class BookingListFragment : Fragment(), BookListener {
         val root = fragBinding.root
         activity?.title = getString(R.string.action_booklist)
         fragBinding.recyclerView.layoutManager = LinearLayoutManager(activity)
-        //fragBinding.recyclerView.adapter =
-          //  BookAdapter(app.bookStore.findAll(), this@BookingListFragment)
+//        fragBinding.recyclerView.adapter =
+//           BookAdapter(bookingListViewModel.findAll(), this@BookingListFragment)
         bookingListViewModel = ViewModelProvider(this).get(BookingListViewModel::class.java)
+        bookingListViewModel.load()
         bookingListViewModel.observableBookingList.observe(viewLifecycleOwner, Observer {
-                donations ->
-            donations?.let { render(bookings) }
+                bookings ->
+            bookings?.let { render(bookings) }
         })
 
         val fab: FloatingActionButton = fragBinding.fab
@@ -85,13 +87,13 @@ class BookingListFragment : Fragment(), BookListener {
         bookingListViewModel.load()
     }
 
-//    companion object {
-//        @JvmStatic
-//        fun newInstance() =
-//            BookingListFragment().apply {
-//                arguments = Bundle().apply { }
-//            }
-//    }
+  companion object {
+       @JvmStatic
+       fun newInstance() =
+           BookingListFragment().apply {
+               arguments = Bundle().apply { }
+          }
+   }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -108,6 +110,7 @@ class BookingListFragment : Fragment(), BookListener {
         bookingListViewModel.del(booking)
         bookingListViewModel.load()
         showBookings(bookingListViewModel.findAll())
+        Toast.makeText(context, "Booking Deleted!", Toast.LENGTH_LONG).show()
 
     }
 

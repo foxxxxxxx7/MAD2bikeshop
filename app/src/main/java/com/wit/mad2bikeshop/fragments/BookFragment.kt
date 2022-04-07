@@ -18,7 +18,7 @@ import java.util.*
 
 class BookFragment : Fragment() {
 
-    lateinit var app: BikeshopApp
+  //  lateinit var app: BikeshopApp
     var booking = BookModel()
     var edit = false
     private var _fragBinding: FragmentBookBinding? = null
@@ -95,6 +95,12 @@ class BookFragment : Fragment() {
                 if (edit) {
                     app.bookStore.update(booking.copy())
                 } else {
+                    layout.bookName.setText("")
+                    layout.bookNumber.setText("")
+                    layout.bookEmail.setText("")
+                    layout.bookPickup.setText("")
+                    layout.bookDropoff.setText("")
+                    Toast.makeText(context, "Booking Added!", Toast.LENGTH_LONG).show()
                     app.bookStore.create(booking.copy())
                     print("Add Button Pressed: $layout.bookName, $layout.bookNumber, $layout.bookEmail")
                     /*setResult(AppCompatActivity.RESULT_OK)*/
