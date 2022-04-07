@@ -19,7 +19,16 @@ import com.wit.mad2bikeshop.model.BookModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+////////////////////may come in handy when adding total to order///////////////////////////////
+//override fun onResume() {
+//    super.onResume()
+//    val reportViewModel = ViewModelProvider(this).get(ReportViewModel::class.java)
+//    reportViewModel.observableDonationsList.observe(viewLifecycleOwner, Observer {
+//        totalDonated = reportViewModel.observableDonationsList.value!!.sumOf { it.amount }
+//        fragBinding.progressBar.progress = totalDonated
+//        fragBinding.totalSoFar.text = getString(R.string.total_donated,totalDonated)
+//    })
+//}
 class BookFragment : Fragment() {
 
   //  lateinit var app: BikeshopApp
