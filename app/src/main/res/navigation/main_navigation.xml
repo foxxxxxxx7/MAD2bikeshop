@@ -26,4 +26,9 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
+    <fragment
+        android:id="@+id/bookingDetailFragment"
+        android:name="com.wit.mad2bikeshop.BookingDetailFragment"
+        android:label="booking_detail_fragment"
+        tools:layout="@layout/booking_detail_fragment" />
 </navigation>
