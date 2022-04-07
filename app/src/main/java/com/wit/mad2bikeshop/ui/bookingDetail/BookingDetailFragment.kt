@@ -1,4 +1,4 @@
-package com.wit.mad2bikeshop
+package com.wit.mad2bikeshop.ui.bookingDetail
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.wit.mad2bikeshop.R
 
 class BookingDetailFragment : Fragment() {
 

@@ -1,4 +1,4 @@
-package com.wit.mad2bikeshop.fragments
+package com.wit.mad2bikeshop.ui.book
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

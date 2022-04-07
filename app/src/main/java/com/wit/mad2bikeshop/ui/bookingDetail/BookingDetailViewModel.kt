@@ -1,4 +1,4 @@
-package com.wit.mad2bikeshop
+package com.wit.mad2bikeshop.ui.bookingDetail
 
 import androidx.lifecycle.ViewModel
 

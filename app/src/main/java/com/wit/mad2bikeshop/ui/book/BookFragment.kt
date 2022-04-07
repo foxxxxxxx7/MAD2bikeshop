@@ -1,7 +1,6 @@
-package com.wit.mad2bikeshop.fragments
+package com.wit.mad2bikeshop.ui.book
 
 import android.os.Bundle
-import android.text.format.DateFormat
 import android.util.Log
 import android.view.*
 import android.widget.CalendarView
@@ -13,8 +12,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.databinding.FragmentBookBinding
-import com.wit.mad2bikeshop.main.BikeshopApp
-import com.wit.mad2bikeshop.model.BookManager
 import com.wit.mad2bikeshop.model.BookModel
 import java.text.SimpleDateFormat
 import java.util.*

@@ -1,6 +1,5 @@
-package com.wit.mad2bikeshop.fragments
+package com.wit.mad2bikeshop.ui.bookingList
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -16,11 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.adapters.BookAdapter
 import com.wit.mad2bikeshop.adapters.BookListener
-import com.wit.mad2bikeshop.databinding.FragmentBookBinding
 import com.wit.mad2bikeshop.databinding.FragmentBookingListBinding
-import com.wit.mad2bikeshop.main.BikeshopApp
-import com.wit.mad2bikeshop.model.BookManager
-import com.wit.mad2bikeshop.model.BookManager.bookings
 import com.wit.mad2bikeshop.model.BookModel
 
 class BookingListFragment : Fragment(), BookListener {

@@ -6,7 +6,7 @@
     app:startDestination="@id/bookingListFragment">
     <fragment
         android:id="@+id/bookFragment"
-        android:name="com.wit.mad2bikeshop.fragments.BookFragment"
+        android:name="com.wit.mad2bikeshop.ui.book.BookFragment"
         android:label="@string/action_book"
         tools:layout="@layout/fragment_book">
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/bookingListFragment"
-        android:name="com.wit.mad2bikeshop.fragments.BookingListFragment"
+        android:name="com.wit.mad2bikeshop.ui.bookingList.BookingListFragment"
         android:label="@string/action_booklist"
         tools:layout="@layout/fragment_booking_list">
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/bookingDetailFragment"
-        android:name="com.wit.mad2bikeshop.BookingDetailFragment"
+        android:name="com.wit.mad2bikeshop.ui.bookingDetail.BookingDetailFragment"
         android:label="booking_detail_fragment"
         tools:layout="@layout/booking_detail_fragment" />
 </navigation>
