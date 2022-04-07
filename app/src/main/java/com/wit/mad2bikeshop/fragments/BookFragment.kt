@@ -7,14 +7,18 @@ import android.view.*
 import android.widget.CalendarView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.databinding.FragmentBookBinding
 import com.wit.mad2bikeshop.main.BikeshopApp
+import com.wit.mad2bikeshop.model.BookManager
 import com.wit.mad2bikeshop.model.BookModel
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class BookFragment : Fragment() {
 
@@ -23,30 +27,33 @@ class BookFragment : Fragment() {
     var edit = false
     private var _fragBinding: FragmentBookBinding? = null
     private val fragBinding get() = _fragBinding!!
+    private lateinit var bookViewModel: BookViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        app = activity?.application as BikeshopApp
+        //app = activity?.application as BikeshopApp
         setHasOptionsMenu(true)
 
 
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         _fragBinding = FragmentBookBinding.inflate(inflater, container, false)
         val root = fragBinding.root
         activity?.title = getString(R.string.action_book)
+
+        bookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
+        bookViewModel.observableStatus.observe(viewLifecycleOwner, Observer { status ->
+            status?.let { render(status) }
+        })
+
+
         setButtonListener(fragBinding)
         val selectDate = fragBinding.bookDate
         //https://stackoverflow.com/questions/16031314/how-can-i-get-selected-date-in-calenderview-in-android#:~:text=Set%20listener%20to%20set%20selected,date%20to%20get%20selected%20date.
         //I found this solution on StackOverflow after the date kept appearing as today's date
-
         // Set date change listener on calenderView.
         // Callback notified when user select a date from CalenderView on UI.
         selectDate.setOnDateChangeListener{calView: CalendarView, year: Int , month: Int, dayOfMonth: Int ->
@@ -60,6 +67,18 @@ class BookFragment : Fragment() {
 
         }
         return root
+    }
+
+    private fun render(status: Boolean) {
+        when (status) {
+            true -> {
+                view?.let {
+                    //Uncomment this if you want to immediately return to Report
+                    //findNavController().popBackStack()
+                }
+            }
+            false -> Toast.makeText(context,getString(R.string.bookError),Toast.LENGTH_LONG).show()
+        }
     }
 
     companion object {
@@ -93,7 +112,7 @@ class BookFragment : Fragment() {
                 Toast.makeText(context, "Please complete ALL fields", Toast.LENGTH_LONG).show()
             } else {
                 if (edit) {
-                    app.bookStore.update(booking.copy())
+                    bookViewModel.updateBook(booking.copy())
                 } else {
                     layout.bookName.setText("")
                     layout.bookNumber.setText("")
@@ -101,7 +120,7 @@ class BookFragment : Fragment() {
                     layout.bookPickup.setText("")
                     layout.bookDropoff.setText("")
                     Toast.makeText(context, "Booking Added!", Toast.LENGTH_LONG).show()
-                    app.bookStore.create(booking.copy())
+                    bookViewModel.addBook(booking.copy())
                     print("Add Button Pressed: $layout.bookName, $layout.bookNumber, $layout.bookEmail")
                     /*setResult(AppCompatActivity.RESULT_OK)*/
                 }

@@ -21,4 +21,12 @@ class BookViewModel : ViewModel() {
             false
         }
     }
+    fun updateBook(booking: BookModel){
+        status.value = try {
+        BookManager.update(booking)
+            true
+        } catch (e: IllegalArgumentException) {
+            false
+        }
+    }
 }
