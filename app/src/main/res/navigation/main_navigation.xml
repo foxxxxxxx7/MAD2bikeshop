@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/bookingDetailFragment"
-        android:name="com.wit.mad2bikeshop.ui.bookingDetail.BookingDetailFragment"
+        android:name="com.wit.mad2bikeshop.ui.detail.BookingDetailFragment"
         android:label="booking_detail_fragment"
         tools:layout="@layout/booking_detail_fragment" />
 </navigation>

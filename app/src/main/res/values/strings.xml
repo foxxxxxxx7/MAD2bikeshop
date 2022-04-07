@@ -27,7 +27,13 @@
     <string name="dropoffHint">Please Enter Drop Off Location:</string>
     <string name="bookingsNotFound">Nothing Booked Yet...\nGo Make a Booking!</string>
     <string name="bookError">Error : Couldn\'t Make a Booking...</string>
-    <!--   <string name="reportTitle">Donations Report</string>-->
+
+    <string name="bookingDetails">Booking Details</string>
+    <string name="amt">Amount :</string>
+    <string name="payment">Payment :</string>
+    <string name="message">Message :</string>
+    <string name="upvotes">UpVotes :</string>
+
     <string name="update">Update</string>
     <string name="delete">Delete</string>
     <string name="defaultAmount">00</string>
