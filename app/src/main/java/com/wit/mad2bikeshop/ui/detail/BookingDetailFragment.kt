@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.navArgs
 import com.wit.mad2bikeshop.R
 
 class BookingDetailFragment : Fragment() {
@@ -14,13 +16,19 @@ class BookingDetailFragment : Fragment() {
         fun newInstance() = BookingDetailFragment()
     }
 
+    private val args by navArgs<BookingDetailFragmentArgs>()
     private lateinit var viewModel: BookingDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.booking_detail_fragment, container, false)
+        //return inflater.inflate(R.layout.booking_detail_fragment, container, false)
+        val view = inflater.inflate(R.layout.booking_detail_fragment, container, false)
+
+        Toast.makeText(context,"Booking ID: ${args.bookingid}",Toast.LENGTH_LONG).show()
+
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

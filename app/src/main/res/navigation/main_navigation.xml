@@ -37,5 +37,8 @@
         <action
             android:id="@+id/action_bookingDetailFragment_to_bookingListFragment"
             app:destination="@id/bookingListFragment" />
+        <argument
+            android:name="bookingid"
+            app:argType="long" />
     </fragment>
 </navigation>
