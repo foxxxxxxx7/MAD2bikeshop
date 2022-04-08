@@ -14,8 +14,15 @@
 
     <string name="name">Name</string>
     <string name="phoneNumber">Phone Number</string>
+    <string name="phoneNo">Phone No.</string>
     <string name="email">Email</string>
     <string name="date">Date</string>
+    <string name="pickup">Pick Up</string>
+    <string name="dropoff">Drop Off</string>
+    <string name="price">Price</string>
+    <string name="id">ID</string>
+
+
     <string name="action_book">Book Now</string>
     <string name="action_booklist">Booking History</string>
     <string name="total">Total so Far</string>

@@ -41,8 +41,9 @@ class BookingDetailFragment : Fragment() {
         return root
     }
     private fun render() {
-        fragBinding.editMessage.setText("A Message")
-        fragBinding.editUpvotes.setText("0")
+//        fragBinding.editMessage.setText("A Message")
+//        fragBinding.editUpvotes.setText("0")
+        fragBinding.editName.setText("0")
         fragBinding.bookingvm = detailViewModel
     }
 
