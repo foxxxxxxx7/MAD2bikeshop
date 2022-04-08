@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.databinding.BookingDetailFragmentBinding
+import com.wit.mad2bikeshop.model.BookModel
 
 class BookingDetailFragment : Fragment() {
 
@@ -37,13 +38,23 @@ class BookingDetailFragment : Fragment() {
         val root = fragBinding.root
 
         detailViewModel = ViewModelProvider(this).get(BookingDetailViewModel::class.java)
-        detailViewModel.observableBooking.observe(viewLifecycleOwner, Observer { render() })
+        detailViewModel.observableBooking.observe(viewLifecycleOwner, Observer {
+                booking ->
+            booking?.let { render(booking) } })
         return root
     }
-    private fun render() {
+    private fun render(booking: BookModel) {
 //        fragBinding.editMessage.setText("A Message")
 //        fragBinding.editUpvotes.setText("0")
-        fragBinding.editName.setText("0")
+        fragBinding.editName.setText(booking.name)
+        fragBinding.editPhoneNumber.setText(booking.phoneNumber)
+        fragBinding.editDate.setText(booking.date)
+        fragBinding.editEmail.setText(booking.email)
+        fragBinding.editPickup.setText(booking.pickup)
+        fragBinding.editDropoff.setText(booking.dropoff)
+        fragBinding.editPrice.setText(booking.price.toString())
+        fragBinding.editID.setText(booking.id.toString())
+
         fragBinding.bookingvm = detailViewModel
     }
 
