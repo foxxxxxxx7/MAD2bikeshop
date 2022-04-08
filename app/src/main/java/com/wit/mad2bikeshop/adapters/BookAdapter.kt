@@ -9,6 +9,7 @@ import com.wit.mad2bikeshop.model.BookModel
 interface BookListener {
     fun onDeleteBooking(booking: BookModel)
     fun onUpdateBooking(booking: BookModel)
+    fun onBookingClick(booking: BookModel)
 }
 
 class BookAdapter constructor(
@@ -37,6 +38,7 @@ class BookAdapter constructor(
 //            binding.name.text = booking.name
 //            binding.phoneNumber.text = booking.phoneNumber
 //            binding.date.text = booking.date
+            binding.root.setOnClickListener { listener.onBookingClick(booking) }
             binding.buttonDelete.setOnClickListener { listener.onDeleteBooking(booking) }
             binding.buttonUpdate.setOnClickListener { listener.onUpdateBooking(booking) }
 

@@ -25,10 +25,17 @@
             app:destination="@id/bookFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_bookingListFragment_to_bookingDetailFragment"
+            app:destination="@id/bookingDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookingDetailFragment"
         android:name="com.wit.mad2bikeshop.ui.detail.BookingDetailFragment"
         android:label="booking_detail_fragment"
-        tools:layout="@layout/booking_detail_fragment" />
+        tools:layout="@layout/booking_detail_fragment" >
+        <action
+            android:id="@+id/action_bookingDetailFragment_to_bookingListFragment"
+            app:destination="@id/bookingListFragment" />
+    </fragment>
 </navigation>
