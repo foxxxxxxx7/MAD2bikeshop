@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.wit.mad2bikeshop.R
+import com.wit.mad2bikeshop.databinding.BookingDetailFragmentBinding
 
 class BookingDetailFragment : Fragment() {
 
@@ -17,24 +19,47 @@ class BookingDetailFragment : Fragment() {
     }
 
     private val args by navArgs<BookingDetailFragmentArgs>()
-    private lateinit var viewModel: BookingDetailViewModel
+    private lateinit var detailViewModel: BookingDetailViewModel
+    private var _fragBinding: BookingDetailFragmentBinding? = null
+    private val fragBinding get() = _fragBinding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         //return inflater.inflate(R.layout.booking_detail_fragment, container, false)
-        val view = inflater.inflate(R.layout.booking_detail_fragment, container, false)
+//        val view = inflater.inflate(R.layout.booking_detail_fragment, container, false)
+//
+//        Toast.makeText(context,"Booking ID: ${args.bookingid}",Toast.LENGTH_LONG).show()
+//
+//        return view
+        _fragBinding = BookingDetailFragmentBinding.inflate(inflater, container, false)
+        val root = fragBinding.root
 
-        Toast.makeText(context,"Booking ID: ${args.bookingid}",Toast.LENGTH_LONG).show()
-
-        return view
+        detailViewModel = ViewModelProvider(this).get(BookingDetailViewModel::class.java)
+        detailViewModel.observableBooking.observe(viewLifecycleOwner, Observer { render() })
+        return root
+    }
+    private fun render() {
+        fragBinding.editMessage.setText("A Message")
+        fragBinding.editUpvotes.setText("0")
+        fragBinding.bookingvm = detailViewModel
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BookingDetailViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onResume() {
+        super.onResume()
+        detailViewModel.getBooking(args.bookingid)
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _fragBinding = null
+    }
+
+//    override fun onActivityCreated(savedInstanceState: Bundle?) {
+//        super.onActivityCreated(savedInstanceState)
+//        detailViewModel = ViewModelProvider(this).get(BookingDetailViewModel::class.java)
+//        // TODO: Use the ViewModel
+//    }
 
 }
