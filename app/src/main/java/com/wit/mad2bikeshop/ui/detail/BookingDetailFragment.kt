@@ -54,6 +54,7 @@ class BookingDetailFragment : Fragment() {
         fragBinding.editDropoff.setText(booking.dropoff)
         fragBinding.editPrice.setText(booking.price.toString())
         fragBinding.editID.setText(booking.id.toString())
+//        fragBinding.spinner2. /////// TODO!!! set value from order to spinner
 
         fragBinding.bookingvm = detailViewModel
     }

@@ -15,126 +15,137 @@
     android:layout_height="match_parent"
     tools:context=".ui.detail.BookingDetailFragment">
 
+    <TextView
+        android:id="@+id/detailPrice2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/bikeType"
+        android:textAlignment="textEnd"
+        android:textColor="@color/bloodorange"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/editPrice"
+        app:layout_constraintHorizontal_bias="0.702"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailPrice" />
+
     <EditText
         android:id="@+id/editDropoff"
-        android:layout_width="210dp"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="text"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDate" />
+        app:layout_constraintTop_toBottomOf="@+id/editPickup" />
 
     <EditText
         android:id="@+id/editPrice"
-        android:layout_width="210dp"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="number"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDate" />
+        app:layout_constraintTop_toBottomOf="@+id/editDropoff" />
 
     <EditText
         android:id="@+id/editID"
-        android:layout_width="210dp"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="476dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="text"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/deleteDonationButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDate" />
+        app:layout_constraintTop_toBottomOf="@+id/editPrice"
+        app:layout_constraintVertical_bias="0.971" />
 
     <EditText
         android:id="@+id/editPickup"
-        android:layout_width="210dp"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="text"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDate" />
+        app:layout_constraintTop_toBottomOf="@+id/editEmail" />
 
     <TextView
         android:id="@+id/detailPickup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginTop="40dp"
         android:text="@string/pickup"
         android:textAlignment="textEnd"
         android:textColor="@color/bloodorange"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editEmail"
-        app:layout_constraintHorizontal_bias="0.904"
+        app:layout_constraintEnd_toStartOf="@+id/editPickup"
+        app:layout_constraintHorizontal_bias="0.754"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailDate" />
+        app:layout_constraintTop_toBottomOf="@+id/detailEmail" />
 
     <TextView
         android:id="@+id/detailDropoff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginTop="40dp"
         android:text="@string/dropoff"
         android:textAlignment="textEnd"
         android:textColor="@color/bloodorange"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editEmail"
-        app:layout_constraintHorizontal_bias="0.904"
+        app:layout_constraintEnd_toStartOf="@+id/editDropoff"
+        app:layout_constraintHorizontal_bias="0.731"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailDate" />
+        app:layout_constraintTop_toBottomOf="@+id/detailPickup" />
 
     <TextView
         android:id="@+id/detailPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginTop="40dp"
         android:text="@string/price"
         android:textAlignment="textEnd"
         android:textColor="@color/bloodorange"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editEmail"
-        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintEnd_toStartOf="@+id/editPrice"
+        app:layout_constraintHorizontal_bias="0.806"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailDate" />
+        app:layout_constraintTop_toBottomOf="@+id/detailDropoff" />
 
     <TextView
         android:id="@+id/detailID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="476dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/id"
         android:textAlignment="textEnd"
         android:textColor="@color/bloodorange"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editEmail"
-        app:layout_constraintHorizontal_bias="0.987"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailDate" />
+        app:layout_constraintBottom_toTopOf="@+id/editDonationButton"
+        app:layout_constraintEnd_toStartOf="@+id/editID"
+        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/detailDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
         android:text="@string/date"
         android:textAlignment="textEnd"
         android:textColor="@color/bloodorange"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/editDate"
-        app:layout_constraintHorizontal_bias="0.961"
+        app:layout_constraintHorizontal_bias="0.865"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailPhoneNo" />
 
@@ -142,23 +153,23 @@
         android:id="@+id/detailEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="1dp"
         android:text="@string/email"
         android:textAlignment="textEnd"
         android:textColor="@color/bloodorange"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/editEmail"
-        app:layout_constraintHorizontal_bias="0.904"
+        app:layout_constraintHorizontal_bias="0.804"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailDate" />
 
     <EditText
         android:id="@+id/editDate"
-        android:layout_width="210dp"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
         android:textAlignment="viewStart"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -168,25 +179,24 @@
         android:id="@+id/editPhoneNumber"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="8dp"
         android:gravity="start"
         android:inputType="phone"
         android:textAlignment="viewStart"
-        android:textColor="@color/bloodorange"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editName" />
 
     <EditText
         android:id="@+id/editEmail"
-        android:layout_width="210dp"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="number|textEmailAddress"
-        android:textSize="24sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editDate" />
 
@@ -194,7 +204,7 @@
         android:id="@+id/editName"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -208,13 +218,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/name"
         android:textAlignment="textEnd"
         android:textColor="@color/bloodorange"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/editName"
-        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintHorizontal_bias="0.831"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -222,14 +231,14 @@
         android:id="@+id/detailPhoneNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="8dp"
         android:text="@string/phoneNo"
         android:textAlignment="textEnd"
         android:textColor="@color/bloodorange"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/editPhoneNumber"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintHorizontal_bias="0.718"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailName" />
 
@@ -251,6 +260,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editDonationButton" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="297dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="40dp"
+        android:entries="@array/bikeArray"
+        app:layout_constraintStart_toEndOf="@+id/detailPrice2"
+        app:layout_constraintTop_toBottomOf="@+id/editPrice" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

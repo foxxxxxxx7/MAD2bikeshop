@@ -20,6 +20,7 @@
     <string name="pickup">Pick Up</string>
     <string name="dropoff">Drop Off</string>
     <string name="price">Price</string>
+    <string name="bikeType">Bike Type</string>
     <string name="id">ID</string>
 
 
