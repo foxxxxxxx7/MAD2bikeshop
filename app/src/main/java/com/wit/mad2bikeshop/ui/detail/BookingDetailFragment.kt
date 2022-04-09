@@ -34,8 +34,10 @@ class BookingDetailFragment : Fragment() {
 //        Toast.makeText(context,"Booking ID: ${args.bookingid}",Toast.LENGTH_LONG).show()
 //
 //        return view
+
         _fragBinding = BookingDetailFragmentBinding.inflate(inflater, container, false)
         val root = fragBinding.root
+        activity?.title = getString(R.string.action_details)
 
         detailViewModel = ViewModelProvider(this).get(BookingDetailViewModel::class.java)
         detailViewModel.observableBooking.observe(viewLifecycleOwner, Observer {
