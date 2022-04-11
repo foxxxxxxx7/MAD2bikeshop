@@ -107,7 +107,7 @@ class BookFragment : Fragment() {
 
         layout.bookButton.setOnClickListener {
 
-            val readableDate = SimpleDateFormat("dd/MM/yyyy").format(Date(layout.bookDate.date))
+            val readableDate = SimpleDateFormat("dd/MM/yy").format(Date(layout.bookDate.date))
             booking.date = readableDate
             booking.name = layout.bookName.text.toString()
             booking.phoneNumber = layout.bookNumber.text.toString()
