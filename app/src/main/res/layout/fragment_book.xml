@@ -98,7 +98,7 @@
                 android:inputType="textPersonName" />/>
 
             <Spinner
-                android:id="@+id/spinner1"
+                android:id="@+id/bookBike"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:drawable/btn_dropdown"

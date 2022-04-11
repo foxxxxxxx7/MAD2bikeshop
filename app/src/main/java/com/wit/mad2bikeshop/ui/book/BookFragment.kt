@@ -114,6 +114,8 @@ class BookFragment : Fragment() {
             booking.email = layout.bookEmail.text.toString()
             booking.pickup = layout.bookPickup.text.toString()
             booking.dropoff = layout.bookDropoff.text.toString()
+            //var selInt = R.array.bikeArray.
+            booking.bike = layout.bookBike.selectedItemPosition
             if (booking.name.isEmpty() || booking.phoneNumber.isEmpty() || booking.email.isEmpty() || booking.pickup.isEmpty() || booking.dropoff.isEmpty()) {
                 Toast.makeText(context, "Please complete ALL fields", Toast.LENGTH_LONG).show()
             } else {

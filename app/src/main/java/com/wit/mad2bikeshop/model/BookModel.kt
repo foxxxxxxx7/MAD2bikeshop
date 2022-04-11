@@ -11,6 +11,7 @@ data class BookModel(
     var phoneNumber: String = "N/A",
     var email: String = "N/A",
     var date: String = "",
+    var bike: Int = 0,
     /*var lat: Double = 0.0,
     var longitude: Double = 0.0,
     var zoom: Float = 0f,*/

@@ -55,6 +55,8 @@ class BookingDetailFragment : Fragment() {
         fragBinding.editPickup.setText(booking.pickup)
         fragBinding.editDropoff.setText(booking.dropoff)
         fragBinding.editPrice.setText(booking.price.toString())
+
+        fragBinding.spinner2.setSelection(booking.bike)
         fragBinding.editID.setText(booking.id.toString())
 //        fragBinding.spinner2. /////// TODO!!! set value from order to spinner
 
