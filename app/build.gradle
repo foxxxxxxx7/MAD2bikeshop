@@ -9,11 +9,9 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.gms.google-services'
 }
-apply plugin: 'com.android.application'
 
-// Add this line
-apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdk 32
