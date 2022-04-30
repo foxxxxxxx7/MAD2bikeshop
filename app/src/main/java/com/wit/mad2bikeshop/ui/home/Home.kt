@@ -75,4 +75,11 @@ class Home : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+    fun signOut() {
+        loggedInViewModel.logOut()
+        //Launch Login activity and clear the back stack to stop navigating back to the Home activity
+        val intent = Intent(this, Login::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+    }
 }
