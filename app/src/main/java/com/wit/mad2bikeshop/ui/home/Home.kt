@@ -1,8 +1,10 @@
 package com.wit.mad2bikeshop.ui.home
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
@@ -79,7 +81,7 @@ class Home : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    fun signOut() {
+    fun signOut(item: MenuItem) {
         loggedInViewModel.logOut()
         //Launch Login activity and clear the back stack to stop navigating back to the Home activity
         val intent = Intent(this, Login::class.java)
