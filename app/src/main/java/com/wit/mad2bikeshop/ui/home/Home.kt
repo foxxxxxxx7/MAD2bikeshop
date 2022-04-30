@@ -1,4 +1,4 @@
-package com.wit.mad2bikeshop.activities
+package com.wit.mad2bikeshop.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.wit.mad2bikeshop.activities
+package com.wit.mad2bikeshop.ui.auth
 
 import android.app.AlertDialog
 import android.os.Bundle
