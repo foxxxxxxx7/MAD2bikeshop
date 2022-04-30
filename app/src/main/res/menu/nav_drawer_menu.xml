@@ -27,11 +27,12 @@
         </menu>
     </item>
 
-    <item android:title="Access Control">
+    <item android:title="@string/accessControl">
         <menu>
             <item
                 android:id="@+id/nav_sign_out"
                 android:icon="@android:drawable/ic_menu_revert"
+                android:onClick="signOut"
                 android:title="@string/sign_out" />
         </menu>
     </item>

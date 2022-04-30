@@ -20,10 +20,10 @@ import com.wit.mad2bikeshop.ui.auth.Login
 class Home : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
-    private lateinit var homeBinding : HomeBinding
-    private lateinit var navHeaderBinding : NavHeaderBinding
+    private lateinit var homeBinding: HomeBinding
+    private lateinit var navHeaderBinding: NavHeaderBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var loggedInViewModel : LoggedInViewModel
+    private lateinit var loggedInViewModel: LoggedInViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,15 +34,18 @@ class Home : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val navHostFragment = supportFragmentManager.
-        findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 
-        appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.bookFragment, R.id.bookingListFragment), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.bookFragment, R.id.bookingListFragment
+            ), drawerLayout
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         val navView = homeBinding.navView
@@ -75,6 +78,7 @@ class Home : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
     fun signOut() {
         loggedInViewModel.logOut()
         //Launch Login activity and clear the back stack to stop navigating back to the Home activity
@@ -83,3 +87,4 @@ class Home : AppCompatActivity() {
         startActivity(intent)
     }
 }
+
