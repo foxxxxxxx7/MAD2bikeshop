@@ -71,9 +71,11 @@ class BookingListFragment : Fragment(), BookListener {
         if (bookingList.isEmpty()) {
             fragBinding.recyclerView.visibility = View.GONE
             fragBinding.bookingsNotFound.visibility = View.VISIBLE
+            fragBinding.John.visibility = View.VISIBLE
         } else {
             fragBinding.recyclerView.visibility = View.VISIBLE
             fragBinding.bookingsNotFound.visibility = View.GONE
+            fragBinding.John.visibility = View.GONE
         }
     }
 
