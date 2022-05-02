@@ -2,8 +2,13 @@ package com.wit.mad2bikeshop.firebase
 
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.wit.mad2bikeshop.model.BookModel
 import com.wit.mad2bikeshop.model.BookStore
+import timber.log.Timber
+
+var database: DatabaseReference = FirebaseDatabase.getInstance().reference
 
 object FirebaseDBManager : BookStore {
     override fun findAll(bookingsList: MutableLiveData<List<BookModel>>) {
@@ -19,7 +24,22 @@ object FirebaseDBManager : BookStore {
     }
 
     override fun create(firebaseUser: MutableLiveData<FirebaseUser>, booking: BookModel) {
-        TODO("Not yet implemented")
+        Timber.i("Firebase DB Reference : $database")
+
+        val uid = firebaseUser.value!!.uid
+        val key = database.child("bookings").push().key
+        if (key == null) {
+            Timber.i("Firebase Error : Key Empty")
+            return
+        }
+        booking.uid = key
+        val bookingValues = booking.toMap()
+
+        val childAdd = HashMap<String, Any>()
+        childAdd["/bookings/$key"] = bookingValues
+        childAdd["/user-bookings/$uid/$key"] = bookingValues
+
+        database.updateChildren(childAdd)
     }
 
     override fun delete(userid: String, bookingid: String) {

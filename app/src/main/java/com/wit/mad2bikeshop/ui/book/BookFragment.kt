@@ -6,6 +6,7 @@ import android.view.*
 import android.widget.CalendarView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -13,6 +14,7 @@ import androidx.navigation.ui.NavigationUI
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.databinding.FragmentBookBinding
 import com.wit.mad2bikeshop.model.BookModel
+import com.wit.mad2bikeshop.ui.auth.LoggedInViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,6 +36,7 @@ class BookFragment : Fragment() {
     private var _fragBinding: FragmentBookBinding? = null
     private val fragBinding get() = _fragBinding!!
     private lateinit var bookViewModel: BookViewModel
+    private val loggedInViewModel : LoggedInViewModel by activityViewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -128,7 +131,11 @@ class BookFragment : Fragment() {
                     layout.bookPickup.setText("")
                     layout.bookDropoff.setText("")
                     Toast.makeText(context, "Booking Added!", Toast.LENGTH_LONG).show()
-                    bookViewModel.addBook(booking.copy())
+//                    bookViewModel.addBook(booking.copy())
+                    bookViewModel.addBook(loggedInViewModel.liveFirebaseUser,
+                        BookModel(name = booking.name, phoneNumber = booking.phoneNumber, pickup = booking.pickup, dropoff = booking. dropoff,
+                            email = loggedInViewModel.liveFirebaseUser.value?.email!!)
+                    )
                     print("Add Button Pressed: $layout.bookName, $layout.bookNumber, $layout.bookEmail")
                     /*setResult(AppCompatActivity.RESULT_OK)*/
                 }
