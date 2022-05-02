@@ -1,5 +1,7 @@
 package com.wit.mad2bikeshop.model
 
+import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.FirebaseUser
 import timber.log.Timber
 
 var lastId = 0L
@@ -12,17 +14,21 @@ object BookManager : BookStore {
 
     val bookings = ArrayList<BookModel>()
 
-    override fun findAll(): List<BookModel> {
-        return bookings
+    override fun findAll(bookingsList: MutableLiveData<List<BookModel>>) {
+        //return bookings
     }
 
-    override fun findById(id: Long): BookModel? {
-        val foundBook: BookModel? = bookings.find { it.id == id }
-        return foundBook
+    override fun findAll(userid: String, bookingsList: MutableLiveData<List<BookModel>>) {
+       // return bookingsList
     }
 
-    override fun create(booking: BookModel) {
-        booking.id = getId()
+    override fun findById(userid: String, bookingid: String, booking: MutableLiveData<BookModel>) {
+        val foundBook: BookModel? = bookings.find { it.uid == userid }
+        //return foundBook
+    }
+
+    override fun create(firebaseUser: MutableLiveData<FirebaseUser>, booking: BookModel) {
+        booking.uid = getId().toString()
         bookings.add(booking)
         logAll()
     }
@@ -32,12 +38,12 @@ object BookManager : BookStore {
         bookings.forEach { Timber.v("Book ${it}") }
     }
 
-    override fun delete(booking: BookModel) {
-        bookings.remove(booking)
+    override fun delete(userid: String, bookingid: String) {
+      //  bookings.remove(bookingid)
     }
 
-    override fun update(booking: BookModel) {
-        val foundBook: BookModel? = bookings.find { p -> p.id == booking.id }
+    override fun update(userid: String, bookingid: String, booking: BookModel) {
+        val foundBook: BookModel? = bookings.find { p -> p.uid == booking.uid }
         if (foundBook != null) {
             foundBook.date = booking.date
             foundBook.name = booking.name
