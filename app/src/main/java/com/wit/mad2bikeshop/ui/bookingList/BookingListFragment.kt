@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -20,6 +21,7 @@ import com.wit.mad2bikeshop.adapters.BookListener
 import com.wit.mad2bikeshop.databinding.FragmentBookingListBinding
 import com.wit.mad2bikeshop.model.BookModel
 import com.wit.mad2bikeshop.ui.auth.LoggedInViewModel
+import com.wit.mad2bikeshop.utils.SwipeToDeleteCallback
 import com.wit.mad2bikeshop.utils.createLoader
 import com.wit.mad2bikeshop.utils.hideLoader
 import com.wit.mad2bikeshop.utils.showLoader
@@ -60,13 +62,25 @@ class BookingListFragment : Fragment(), BookListener {
                 checkSwipeRefresh() }
         })
 
-        setSwipeRefresh()
-
         val fab: FloatingActionButton = fragBinding.fab
         fab.setOnClickListener {
             val action = BookingListFragmentDirections.actionBookingListFragmentToBookFragment()
             findNavController().navigate(action)
         }
+
+        setSwipeRefresh()
+
+        val swipeDeleteHandler = object : SwipeToDeleteCallback(requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val adapter = fragBinding.recyclerView.adapter as BookAdapter
+                adapter.removeAt(viewHolder.adapterPosition)
+
+            }
+        }
+        val itemTouchDeleteHelper = ItemTouchHelper(swipeDeleteHandler)
+        itemTouchDeleteHelper.attachToRecyclerView(fragBinding.recyclerView)
+
+
         return root
     }
 
