@@ -39,6 +39,6 @@
             app:destination="@id/bookingListFragment" />
         <argument
             android:name="bookingid"
-            app:argType="long" />
+            app:argType="string" />
     </fragment>
 </navigation>

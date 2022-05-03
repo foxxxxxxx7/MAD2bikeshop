@@ -90,7 +90,7 @@ class BookingDetailFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        detailViewModel.getBooking(loggedInViewModel.liveFirebaseUser.value?.uid!!,
+        detailViewModel.getBooking(user?.uid!!,
             args.bookingid)
     }
     override fun onDestroyView() {
