@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.adapters.BookAdapter
 import com.wit.mad2bikeshop.adapters.BookListener
@@ -22,6 +23,7 @@ import com.wit.mad2bikeshop.databinding.FragmentBookingListBinding
 import com.wit.mad2bikeshop.model.BookModel
 import com.wit.mad2bikeshop.ui.auth.LoggedInViewModel
 import com.wit.mad2bikeshop.utils.*
+import timber.log.Timber
 
 class BookingListFragment : Fragment(), BookListener {
 
@@ -30,6 +32,7 @@ class BookingListFragment : Fragment(), BookListener {
     private val fragBinding get() = _fragBinding!!
     lateinit var loader : AlertDialog
     private lateinit var bookingListViewModel: BookingListViewModel
+    val user = FirebaseAuth.getInstance().currentUser
     private val loggedInViewModel : LoggedInViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,11 +49,21 @@ class BookingListFragment : Fragment(), BookListener {
         val root = fragBinding.root
         activity?.title = getString(R.string.action_booklist)
         loader = createLoader(requireActivity())
+
         fragBinding.recyclerView.layoutManager = LinearLayoutManager(activity)
+
+
 //        fragBinding.recyclerView.adapter =
 //           BookAdapter(bookingListViewModel.findAll(), this@BookingListFragment)
+        val fab: FloatingActionButton = fragBinding.fab
+        fab.setOnClickListener {
+            val action = BookingListFragmentDirections.actionBookingListFragmentToBookFragment()
+            findNavController().navigate(action)
+        }
+
+
         bookingListViewModel = ViewModelProvider(this).get(BookingListViewModel::class.java)
-        bookingListViewModel.load()
+       // bookingListViewModel.load()
         bookingListViewModel.observableBookingList.observe(viewLifecycleOwner, Observer {
                 bookings ->
             bookings?.let {
@@ -59,18 +72,19 @@ class BookingListFragment : Fragment(), BookListener {
                 checkSwipeRefresh() }
         })
 
-        val fab: FloatingActionButton = fragBinding.fab
-        fab.setOnClickListener {
-            val action = BookingListFragmentDirections.actionBookingListFragmentToBookFragment()
-            findNavController().navigate(action)
-        }
-
         setSwipeRefresh()
 
         val swipeDeleteHandler = object : SwipeToDeleteCallback(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                Timber.i("hello456")
+                showLoader(loader,"Deleting Booking")
                 val adapter = fragBinding.recyclerView.adapter as BookAdapter
                 adapter.removeAt(viewHolder.adapterPosition)
+                bookingListViewModel.delete(user?.uid!!,
+                    (viewHolder.itemView.tag as BookModel).uid!!)
+                Timber.i(bookingListViewModel.liveFirebaseUser.value.toString())
+                Timber.i("hello123")
+                hideLoader(loader)
 
             }
         }

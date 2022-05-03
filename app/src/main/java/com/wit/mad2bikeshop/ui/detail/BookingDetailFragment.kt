@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.firebase.auth.FirebaseAuth
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.databinding.BookingDetailFragmentBinding
 import com.wit.mad2bikeshop.model.BookModel
@@ -29,6 +30,7 @@ class BookingDetailFragment : Fragment() {
     private val fragBinding get() = _fragBinding!!
     private val loggedInViewModel : LoggedInViewModel by activityViewModels()
     private val bookingListViewModel : BookingListViewModel by activityViewModels()
+    val user = FirebaseAuth.getInstance().currentUser
 
 
     override fun onCreateView(
@@ -52,7 +54,7 @@ class BookingDetailFragment : Fragment() {
             booking?.let { render(booking) } })
 
         fragBinding.editDonationButton.setOnClickListener {
-            detailViewModel.updateBook(loggedInViewModel.liveFirebaseUser.value?.uid!!,
+            detailViewModel.updateBook(user?.uid!!,
 
                //may have issues with toString below!!!!!!!
                 args.bookingid.toString(), fragBinding.bookingvm?.observableBooking!!.value!!)
@@ -64,7 +66,7 @@ class BookingDetailFragment : Fragment() {
         }
 
         fragBinding.deleteDonationButton.setOnClickListener {
-            bookingListViewModel.delete(loggedInViewModel.liveFirebaseUser.value?.uid!!,
+            bookingListViewModel.delete(user?.uid!!,
                 detailViewModel.observableBooking.value?.uid!!)
             findNavController().navigateUp()
         }
