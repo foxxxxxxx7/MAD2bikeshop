@@ -2,7 +2,13 @@ package com.wit.mad2bikeshop.model
 
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.wit.mad2bikeshop.firebase.FirebaseDBManager
+import com.wit.mad2bikeshop.firebase.database
 import timber.log.Timber
+import java.lang.Exception
 
 var lastId = 0L
 
@@ -12,6 +18,7 @@ internal fun getId(): Long {
 
 object BookManager : BookStore {
 
+    var liveFirebaseUser = MutableLiveData<FirebaseUser>()
     val bookings = ArrayList<BookModel>()
 
     override fun findAll(bookingsList: MutableLiveData<List<BookModel>>) {
@@ -19,7 +26,26 @@ object BookManager : BookStore {
     }
 
     override fun findAll(userid: String, bookingsList: MutableLiveData<List<BookModel>>) {
-       // return bookingsList
+
+        database.child("user-bookings").child(userid)
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    Timber.i("Firebase Booking error : ${error.message}")
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val localList = ArrayList<BookModel>()
+                    val children = snapshot.children
+                    children.forEach {
+                        val booking = it.getValue(BookModel::class.java)
+                        localList.add(booking!!)
+                    }
+                    database.child("user-bookings").child(userid)
+                        .removeEventListener(this)
+
+                    bookingsList.value = localList
+                }
+            })
     }
 
     override fun findById(userid: String, bookingid: String, booking: MutableLiveData<BookModel>) {

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -17,6 +18,7 @@ import com.wit.mad2bikeshop.adapters.BookAdapter
 import com.wit.mad2bikeshop.adapters.BookListener
 import com.wit.mad2bikeshop.databinding.FragmentBookingListBinding
 import com.wit.mad2bikeshop.model.BookModel
+import com.wit.mad2bikeshop.ui.auth.LoggedInViewModel
 
 class BookingListFragment : Fragment(), BookListener {
 
@@ -24,6 +26,7 @@ class BookingListFragment : Fragment(), BookListener {
     private var _fragBinding: FragmentBookingListBinding? = null
     private val fragBinding get() = _fragBinding!!
     private lateinit var bookingListViewModel: BookingListViewModel
+    private val loggedInViewModel : LoggedInViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,13 +109,13 @@ class BookingListFragment : Fragment(), BookListener {
     override fun onDeleteBooking(booking: BookModel) {
         //bookingListViewModel.del(booking)
         bookingListViewModel.load()
-        showBookings(bookingListViewModel.findAll())
+     //   showBookings(bookingListViewModel.findAll())
         Toast.makeText(context, "Booking Deleted!", Toast.LENGTH_LONG).show()
 
     }
 
     override fun onUpdateBooking(booking: BookModel) {
-        showBookings(bookingListViewModel.findAll())
+     //   showBookings(bookingListViewModel.findAll())
     }
 
     override fun onBookingClick(booking: BookModel) {

@@ -2,9 +2,11 @@ package com.wit.mad2bikeshop.model
 
 import android.os.Parcelable
 import com.google.firebase.database.Exclude
+import com.google.firebase.database.IgnoreExtraProperties
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
+@IgnoreExtraProperties
 @Parcelize
 data class BookModel(
     var id : Long = 0,

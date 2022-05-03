@@ -3,38 +3,48 @@ package com.wit.mad2bikeshop.ui.bookingList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.wit.mad2bikeshop.firebase.FirebaseDBManager
-import com.wit.mad2bikeshop.model.BookManager
 import com.wit.mad2bikeshop.model.BookModel
+import com.wit.mad2bikeshop.ui.auth.LoggedInViewModel
 import timber.log.Timber
 import java.lang.Exception
 
 class BookingListViewModel : ViewModel() {
 
-    private val bookingList = MutableLiveData<List<BookModel>>()
+    private var bookingsList = MutableLiveData<List<BookModel>>()
 
     val observableBookingList: LiveData<List<BookModel>>
-        get() = bookingList
+        get() = bookingsList
 
     var liveFirebaseUser = MutableLiveData<FirebaseUser>()
+    val user = FirebaseAuth.getInstance().currentUser
+    //var  ussser = LoggedInViewModel.liveFirebaseUser
+
 
     init {
         load()
     }
 
-    fun findAll(): List<BookModel> {
-        return BookManager.bookings
-    }
+   // fun findAll(): List<BookModel> {
+   //     return BookManager.bookings
+   // }
 
     fun load() {
         try {
             //DonationManager.findAll(liveFirebaseUser.value?.email!!, donationsList)
+            Timber.i("Booking List 1")
+            //Timber.i(liveFirebaseUser.value?.uid!!)
+            Timber.i(user?.uid!!)
+            //Timber.i(bookingsList.toString())
             FirebaseDBManager.findAll(
-                liveFirebaseUser.value?.uid!!,
-                bookingList
+//                liveFirebaseUser.value?.uid!!,
+                user?.uid!!,
+               // "3kl1HSOCtVa7gLexgdnDgmzhRun1",
+                bookingsList
             )
-            Timber.i("Booking List Load Success : ${bookingList.value.toString()}")
+            Timber.i("Booking List Load Success : ${bookingsList.value.toString()}")
         } catch (e: Exception) {
             Timber.i("Booking List Load Error : $e.message")
         }
