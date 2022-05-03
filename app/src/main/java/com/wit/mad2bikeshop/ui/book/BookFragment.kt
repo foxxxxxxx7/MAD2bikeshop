@@ -133,7 +133,7 @@ class BookFragment : Fragment() {
                     Toast.makeText(context, "Booking Added!", Toast.LENGTH_LONG).show()
 //                    bookViewModel.addBook(booking.copy())
                     bookViewModel.addBook(loggedInViewModel.liveFirebaseUser,
-                        BookModel(name = booking.name, phoneNumber = booking.phoneNumber, pickup = booking.pickup, dropoff = booking. dropoff,
+                        BookModel(name = booking.name, date = booking.date, phoneNumber = booking.phoneNumber, pickup = booking.pickup, dropoff = booking. dropoff,
                             email = loggedInViewModel.liveFirebaseUser.value?.email!!)
                     )
                     print("Add Button Pressed: $layout.bookName, $layout.bookNumber, $layout.bookEmail")
