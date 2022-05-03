@@ -60,6 +60,8 @@ class BookingListFragment : Fragment(), BookListener {
                 checkSwipeRefresh() }
         })
 
+        setSwipeRefresh()
+
         val fab: FloatingActionButton = fragBinding.fab
         fab.setOnClickListener {
             val action = BookingListFragmentDirections.actionBookingListFragmentToBookFragment()
@@ -95,7 +97,7 @@ class BookingListFragment : Fragment(), BookListener {
         fragBinding.swiperefresh.setOnRefreshListener {
             fragBinding.swiperefresh.isRefreshing = true
             showLoader(loader,"Downloading Booking")
-            //Retrieve Donation List again here
+            bookingListViewModel.load()
 
         }
     }
