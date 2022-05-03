@@ -119,11 +119,11 @@ class BookFragment : Fragment() {
             booking.dropoff = layout.bookDropoff.text.toString()
             //var selInt = R.array.bikeArray.
             booking.bike = layout.bookBike.selectedItemPosition
-            if (booking.name.isEmpty() || booking.phoneNumber.isEmpty() || booking.email.isEmpty() || booking.pickup.isEmpty() || booking.dropoff.isEmpty()) {
+            if (booking.name.isEmpty() || booking.phoneNumber.isEmpty() ||  booking.pickup.isEmpty() || booking.dropoff.isEmpty()) {
                 Toast.makeText(context, "Please complete ALL fields", Toast.LENGTH_LONG).show()
-            } else {
-                if (edit) {
-                    bookViewModel.updateBook(booking.copy())
+//            } else {
+//                if (edit) {
+//                   // bookViewModel.updateBook(booking.copy())
                 } else {
                     layout.bookName.setText("")
                     layout.bookNumber.setText("")
@@ -141,7 +141,7 @@ class BookFragment : Fragment() {
                 }
             }
         }
-    }
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_book, menu)

@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.wit.mad2bikeshop.model.BookManager
 import com.wit.mad2bikeshop.model.BookModel
+import timber.log.Timber
+import java.lang.Exception
 
 class BookingDetailViewModel : ViewModel() {
     private val booking = MutableLiveData<BookModel>()
@@ -12,7 +14,12 @@ class BookingDetailViewModel : ViewModel() {
     val observableBooking: LiveData<BookModel>
         get() = booking
 
-    fun getBooking(id: Long) {
-        booking.value = BookManager.findById(id)
+    fun getBooking(email: String, id: String) {
+        try {
+            BookManager.findById(email, id, booking)
+            Timber.i("Detail getBooking() Success : ${booking.value.toString()}")
+        } catch (e: Exception) {
+            Timber.i("Detail getBooking() Error : $e.message")
+        }
     }
 }

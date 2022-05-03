@@ -104,7 +104,7 @@ class BookingListFragment : Fragment(), BookListener {
     }
 
     override fun onDeleteBooking(booking: BookModel) {
-        bookingListViewModel.del(booking)
+        //bookingListViewModel.del(booking)
         bookingListViewModel.load()
         showBookings(bookingListViewModel.findAll())
         Toast.makeText(context, "Booking Deleted!", Toast.LENGTH_LONG).show()

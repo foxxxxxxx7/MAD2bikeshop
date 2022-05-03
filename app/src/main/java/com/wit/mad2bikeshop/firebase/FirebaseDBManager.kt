@@ -8,7 +8,7 @@ import com.wit.mad2bikeshop.model.BookModel
 import com.wit.mad2bikeshop.model.BookStore
 import timber.log.Timber
 
-var database: DatabaseReference = FirebaseDatabase.getInstance().reference
+var database: DatabaseReference = FirebaseDatabase.getInstance("https://viking-bike-hire-13ed9-default-rtdb.europe-west1.firebasedatabase.app").getReference()
 
 object FirebaseDBManager : BookStore {
     override fun findAll(bookingsList: MutableLiveData<List<BookModel>>) {

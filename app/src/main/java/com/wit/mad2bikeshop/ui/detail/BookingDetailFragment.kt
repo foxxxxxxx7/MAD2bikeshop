@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.databinding.BookingDetailFragmentBinding
 import com.wit.mad2bikeshop.model.BookModel
+import com.wit.mad2bikeshop.ui.auth.LoggedInViewModel
 
 class BookingDetailFragment : Fragment() {
 
@@ -23,6 +25,7 @@ class BookingDetailFragment : Fragment() {
     private lateinit var detailViewModel: BookingDetailViewModel
     private var _fragBinding: BookingDetailFragmentBinding? = null
     private val fragBinding get() = _fragBinding!!
+    private val loggedInViewModel : LoggedInViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,11 +66,11 @@ class BookingDetailFragment : Fragment() {
         fragBinding.bookingvm = detailViewModel
     }
 
-    override fun onResume() {
-        super.onResume()
-        detailViewModel.getBooking(args.bookingid)
-    }
-
+//    override fun onResume() {
+//        super.onResume()
+//        detailViewModel.getBooking(loggedInViewModel.liveFirebaseUser.value?.uid!!
+//            ,            args.bookingid)
+//    }
     override fun onDestroyView() {
         super.onDestroyView()
         _fragBinding = null
