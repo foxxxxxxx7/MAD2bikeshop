@@ -3,6 +3,7 @@ package com.wit.mad2bikeshop.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.databinding.CardBookBinding
 import com.wit.mad2bikeshop.model.BookModel
 
@@ -14,8 +15,8 @@ interface BookListener {
 
 class BookAdapter constructor(
     private var bookings: ArrayList<BookModel>,
-    private val listener: BookListener
-) : RecyclerView.Adapter<BookAdapter.MainHolder>() {
+    private val listener: BookListener)
+    : RecyclerView.Adapter<BookAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         val binding = CardBookBinding
@@ -36,7 +37,8 @@ class BookAdapter constructor(
 
     override fun getItemCount(): Int = bookings.size
 
-    inner class MainHolder(val binding: CardBookBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MainHolder(val binding: CardBookBinding) :
+                            RecyclerView.ViewHolder(binding.root) {
 
         fun bind(booking: BookModel, listener: BookListener) {
             binding.root.tag = booking

@@ -12,14 +12,18 @@ import java.lang.Exception
 class BookingDetailViewModel : ViewModel() {
     private val booking = MutableLiveData<BookModel>()
 
-    val observableBooking: LiveData<BookModel>
+    var observableBooking: LiveData<BookModel>
         get() = booking
+        set(value) {booking.value = value.value}
 
-    fun getBooking(email: String, id: String) {
+    fun getBooking(userid:String, id: String) {
         try {
-            BookManager.findById(email, id, booking)
-            Timber.i("Detail getBooking() Success : ${booking.value.toString()}")
-        } catch (e: Exception) {
+            //BookManager.findById(email, id, donation)
+            FirebaseDBManager.findById(userid, id, booking)
+            Timber.i("Detail getBooking() Success : ${
+                booking.value.toString()}")
+        }
+        catch (e: Exception) {
             Timber.i("Detail getBooking() Error : $e.message")
         }
     }

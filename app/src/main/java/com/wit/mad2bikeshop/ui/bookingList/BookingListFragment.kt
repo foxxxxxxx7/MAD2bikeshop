@@ -177,7 +177,7 @@ class BookingListFragment : Fragment(), BookListener {
 //    }
 
     override fun onBookingClick(booking: BookModel) {
-        val action = BookingListFragmentDirections.actionBookingListFragmentToBookingDetailFragment(booking.id)
+        val action = BookingListFragmentDirections.actionBookingListFragmentToBookingDetailFragment(booking.uid!!)
         findNavController().navigate(action)
     }
 

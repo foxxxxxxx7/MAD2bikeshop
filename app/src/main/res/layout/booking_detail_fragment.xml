@@ -38,6 +38,7 @@
         android:ems="10"
         android:inputType="text"
         android:textSize="24sp"
+        android:text="@={bookingvm.observableBooking.dropoff}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editPickup" />
 
@@ -50,21 +51,23 @@
         android:ems="10"
         android:inputType="number"
         android:textSize="24sp"
+        android:text="@={``+ bookingvm.observableBooking.price}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editDropoff" />
 
-    <EditText
-        android:id="@+id/editID"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="text"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/deleteDonationButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPrice"
-        app:layout_constraintVertical_bias="0.971" />
+<!--    <EditText-->
+<!--        android:id="@+id/editID"-->
+<!--        android:layout_width="220dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="text"-->
+<!--        android:textSize="24sp"-->
+<!--        android:text="@={``+ bookingvm.observableBooking.id}"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/deleteDonationButton"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/editPrice"-->
+<!--        app:layout_constraintVertical_bias="0.971" />-->
 
     <EditText
         android:id="@+id/editPickup"
@@ -75,6 +78,7 @@
         android:ems="10"
         android:inputType="text"
         android:textSize="24sp"
+        android:text="@={bookingvm.observableBooking.pickup}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editEmail" />
 
@@ -172,6 +176,7 @@
         android:layout_marginEnd="8dp"
         android:textAlignment="viewStart"
         android:textSize="24sp"
+        android:text="@={bookingvm.observableBooking.date}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editPhoneNumber" />
 
@@ -197,6 +202,7 @@
         android:ems="10"
         android:inputType="number|textEmailAddress"
         android:textSize="16sp"
+        android:text="@={bookingvm.observableBooking.email}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editDate" />
 
@@ -210,6 +216,7 @@
         android:inputType="textPersonName"
         android:textAlignment="viewStart"
         android:textSize="24sp"
+        android:text="@={bookingvm.observableBooking.name}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

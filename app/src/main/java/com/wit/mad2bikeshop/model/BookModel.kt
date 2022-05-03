@@ -9,7 +9,7 @@ import java.util.*
 @IgnoreExtraProperties
 @Parcelize
 data class BookModel(
-    var id : Long = 0,
+//    var id : Long = 0,
     var uid: String? = "",
     var name: String = "N/A",
     var phoneNumber: String = "N/A",
@@ -28,7 +28,7 @@ data class BookModel(
     @Exclude
     fun toMap(): Map<String, Any?> {
         return mapOf(
-            "id" to id,
+//            "id" to id,
             "uid" to uid,
             "name" to name,
             "phoneNumber" to phoneNumber,
