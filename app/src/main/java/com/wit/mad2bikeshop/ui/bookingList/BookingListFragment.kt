@@ -1,5 +1,6 @@
 package com.wit.mad2bikeshop.ui.bookingList
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -19,12 +20,16 @@ import com.wit.mad2bikeshop.adapters.BookListener
 import com.wit.mad2bikeshop.databinding.FragmentBookingListBinding
 import com.wit.mad2bikeshop.model.BookModel
 import com.wit.mad2bikeshop.ui.auth.LoggedInViewModel
+import com.wit.mad2bikeshop.utils.createLoader
+import com.wit.mad2bikeshop.utils.hideLoader
+import com.wit.mad2bikeshop.utils.showLoader
 
 class BookingListFragment : Fragment(), BookListener {
 
   //  lateinit var app: BikeshopApp
     private var _fragBinding: FragmentBookingListBinding? = null
     private val fragBinding get() = _fragBinding!!
+    lateinit var loader : AlertDialog
     private lateinit var bookingListViewModel: BookingListViewModel
     private val loggedInViewModel : LoggedInViewModel by activityViewModels()
 
@@ -41,6 +46,7 @@ class BookingListFragment : Fragment(), BookListener {
         _fragBinding = FragmentBookingListBinding.inflate(inflater, container, false)
         val root = fragBinding.root
         activity?.title = getString(R.string.action_booklist)
+        loader = createLoader(requireActivity())
         fragBinding.recyclerView.layoutManager = LinearLayoutManager(activity)
 //        fragBinding.recyclerView.adapter =
 //           BookAdapter(bookingListViewModel.findAll(), this@BookingListFragment)
@@ -48,7 +54,10 @@ class BookingListFragment : Fragment(), BookListener {
         bookingListViewModel.load()
         bookingListViewModel.observableBookingList.observe(viewLifecycleOwner, Observer {
                 bookings ->
-            bookings?.let { render(bookings) }
+            bookings?.let {
+                render(bookings as ArrayList<BookModel>)
+                hideLoader(loader)
+                checkSwipeRefresh() }
         })
 
         val fab: FloatingActionButton = fragBinding.fab
@@ -69,7 +78,7 @@ class BookingListFragment : Fragment(), BookListener {
             requireView().findNavController()) || super.onOptionsItemSelected(item)
     }
 
-    private fun render(bookingList: List<BookModel>) {
+    private fun render(bookingList: ArrayList<BookModel>) {
         fragBinding.recyclerView.adapter = BookAdapter(bookingList, this )
         if (bookingList.isEmpty()) {
             fragBinding.recyclerView.visibility = View.GONE
@@ -80,6 +89,20 @@ class BookingListFragment : Fragment(), BookListener {
             fragBinding.bookingsNotFound.visibility = View.GONE
             fragBinding.John.visibility = View.GONE
         }
+    }
+
+    fun setSwipeRefresh() {
+        fragBinding.swiperefresh.setOnRefreshListener {
+            fragBinding.swiperefresh.isRefreshing = true
+            showLoader(loader,"Downloading Booking")
+            //Retrieve Donation List again here
+
+        }
+    }
+
+    private fun checkSwipeRefresh() {
+        if (fragBinding.swiperefresh.isRefreshing)
+            fragBinding.swiperefresh.isRefreshing = false
     }
 
     override fun onResume() {
@@ -100,23 +123,23 @@ class BookingListFragment : Fragment(), BookListener {
         _fragBinding = null
     }
 
-    private fun showBookings(bookings: List<BookModel>) {
-        view?.findViewById<RecyclerView>(R.id.recyclerView)?.adapter =
-            BookAdapter(bookings, this@BookingListFragment)
-        view?.findViewById<RecyclerView>(R.id.recyclerView)?.adapter?.notifyDataSetChanged()
-    }
-
-    override fun onDeleteBooking(booking: BookModel) {
-        //bookingListViewModel.del(booking)
-        bookingListViewModel.load()
-     //   showBookings(bookingListViewModel.findAll())
-        Toast.makeText(context, "Booking Deleted!", Toast.LENGTH_LONG).show()
-
-    }
-
-    override fun onUpdateBooking(booking: BookModel) {
-     //   showBookings(bookingListViewModel.findAll())
-    }
+//    private fun showBookings(bookings: List<BookModel>) {
+//        view?.findViewById<RecyclerView>(R.id.recyclerView)?.adapter =
+//            BookAdapter(bookings, this@BookingListFragment)
+//        view?.findViewById<RecyclerView>(R.id.recyclerView)?.adapter?.notifyDataSetChanged()
+//    }
+//
+//    override fun onDeleteBooking(booking: BookModel) {
+//        //bookingListViewModel.del(booking)
+//        bookingListViewModel.load()
+//     //   showBookings(bookingListViewModel.findAll())
+//        Toast.makeText(context, "Booking Deleted!", Toast.LENGTH_LONG).show()
+//
+//    }
+//
+//    override fun onUpdateBooking(booking: BookModel) {
+//     //   showBookings(bookingListViewModel.findAll())
+//    }
 
     override fun onBookingClick(booking: BookModel) {
         val action = BookingListFragmentDirections.actionBookingListFragmentToBookingDetailFragment(booking.id)

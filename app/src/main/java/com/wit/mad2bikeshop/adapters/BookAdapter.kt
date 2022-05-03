@@ -7,13 +7,13 @@ import com.wit.mad2bikeshop.databinding.CardBookBinding
 import com.wit.mad2bikeshop.model.BookModel
 
 interface BookListener {
-    fun onDeleteBooking(booking: BookModel)
-    fun onUpdateBooking(booking: BookModel)
+//    fun onDeleteBooking(booking: BookModel)
+//    fun onUpdateBooking(booking: BookModel)
     fun onBookingClick(booking: BookModel)
 }
 
 class BookAdapter constructor(
-    private var bookings: List<BookModel>,
+    private var bookings: ArrayList<BookModel>,
     private val listener: BookListener
 ) : RecyclerView.Adapter<BookAdapter.MainHolder>() {
 
@@ -29,6 +29,11 @@ class BookAdapter constructor(
         holder.bind(booking, listener)
     }
 
+    fun removeAt(position: Int) {
+        bookings.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
     override fun getItemCount(): Int = bookings.size
 
     inner class MainHolder(val binding: CardBookBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -39,12 +44,14 @@ class BookAdapter constructor(
 //            binding.phoneNumber.text = booking.phoneNumber
 //            binding.date.text = booking.date
             binding.root.setOnClickListener { listener.onBookingClick(booking) }
-            binding.buttonDelete.setOnClickListener { listener.onDeleteBooking(booking) }
-            binding.buttonUpdate.setOnClickListener { listener.onUpdateBooking(booking) }
+//            binding.buttonDelete.setOnClickListener { listener.onDeleteBooking(booking) }
+//            binding.buttonUpdate.setOnClickListener { listener.onUpdateBooking(booking) }
 
             binding.executePendingBindings()
             /* binding.imageIcon.setImageResource(R.mipmap.ic_launcher_round)*/
         }
+
+
 
 
     }
