@@ -50,6 +50,17 @@ class BookingListViewModel : ViewModel() {
         }
     }
 
+    fun delete(userid: String, id: String) {
+        try {
+            //DonationManager.delete(userid,id)
+            FirebaseDBManager.delete(userid,id)
+            Timber.i("Booking Deleted ")
+        }
+        catch (e: Exception) {
+            Timber.i("Booking Delete Error : $e.message")
+        }
+    }
+
     fun del(userid: String, uid: String) {
         try {
             //DonationManager.delete(userid,id)
