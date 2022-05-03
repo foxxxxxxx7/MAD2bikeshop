@@ -21,10 +21,7 @@ import com.wit.mad2bikeshop.adapters.BookListener
 import com.wit.mad2bikeshop.databinding.FragmentBookingListBinding
 import com.wit.mad2bikeshop.model.BookModel
 import com.wit.mad2bikeshop.ui.auth.LoggedInViewModel
-import com.wit.mad2bikeshop.utils.SwipeToDeleteCallback
-import com.wit.mad2bikeshop.utils.createLoader
-import com.wit.mad2bikeshop.utils.hideLoader
-import com.wit.mad2bikeshop.utils.showLoader
+import com.wit.mad2bikeshop.utils.*
 
 class BookingListFragment : Fragment(), BookListener {
 
@@ -79,6 +76,14 @@ class BookingListFragment : Fragment(), BookListener {
         }
         val itemTouchDeleteHelper = ItemTouchHelper(swipeDeleteHandler)
         itemTouchDeleteHelper.attachToRecyclerView(fragBinding.recyclerView)
+
+        val swipeEditHandler = object : SwipeToEditCallback(requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+               onBookingClick(viewHolder.itemView.tag as BookModel)
+            }
+        }
+        val itemTouchEditHelper = ItemTouchHelper(swipeEditHandler)
+        itemTouchEditHelper.attachToRecyclerView(fragBinding.recyclerView)
 
 
         return root

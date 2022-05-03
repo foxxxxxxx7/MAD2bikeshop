@@ -9,11 +9,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.databinding.BookingDetailFragmentBinding
 import com.wit.mad2bikeshop.model.BookModel
 import com.wit.mad2bikeshop.ui.auth.LoggedInViewModel
+import com.wit.mad2bikeshop.ui.bookingList.BookingListViewModel
 
 class BookingDetailFragment : Fragment() {
 
@@ -26,6 +28,8 @@ class BookingDetailFragment : Fragment() {
     private var _fragBinding: BookingDetailFragmentBinding? = null
     private val fragBinding get() = _fragBinding!!
     private val loggedInViewModel : LoggedInViewModel by activityViewModels()
+    private val bookingListViewModel : BookingListViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +50,24 @@ class BookingDetailFragment : Fragment() {
         detailViewModel.observableBooking.observe(viewLifecycleOwner, Observer {
                 booking ->
             booking?.let { render(booking) } })
+
+        fragBinding.editDonationButton.setOnClickListener {
+            detailViewModel.updateBook(loggedInViewModel.liveFirebaseUser.value?.uid!!,
+
+               //may have issues with toString below!!!!!!!
+                args.bookingid.toString(), fragBinding.bookingvm?.observableBooking!!.value!!)
+            //Force Reload of list to guarantee refresh
+            bookingListViewModel.load()
+            findNavController().navigateUp()
+            //findNavController().popBackStack()
+
+        }
+
+        fragBinding.deleteDonationButton.setOnClickListener {
+            bookingListViewModel.delete(loggedInViewModel.liveFirebaseUser.value?.uid!!,
+                detailViewModel.observableBooking.value?.uid!!)
+            findNavController().navigateUp()
+        }
         return root
     }
     private fun render(booking: BookModel) {

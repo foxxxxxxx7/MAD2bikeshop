@@ -39,7 +39,7 @@ class BookAdapter constructor(
     inner class MainHolder(val binding: CardBookBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(booking: BookModel, listener: BookListener) {
-            binding.root.tag = booking.uid
+            binding.root.tag = booking
             binding.booking = booking
 //            binding.name.text = booking.name
 //            binding.phoneNumber.text = booking.phoneNumber
