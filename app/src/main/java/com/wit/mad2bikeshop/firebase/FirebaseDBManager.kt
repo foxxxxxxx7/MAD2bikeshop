@@ -78,6 +78,13 @@ object FirebaseDBManager : BookStore {
     }
 
     override fun update(userid: String, bookingid: String, booking: BookModel) {
-        TODO("Not yet implemented")
+
+        val bookingValue = booking.toMap()
+
+        val childUpdate : MutableMap<String, Any?> = HashMap()
+        childUpdate["booking/$bookingid"] = bookingValue
+        childUpdate["user-booking/$userid/$bookingid"] = bookingValue
+
+        database.updateChildren(childUpdate)
     }
 }
