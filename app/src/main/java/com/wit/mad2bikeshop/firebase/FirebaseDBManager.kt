@@ -15,7 +15,6 @@ object FirebaseDBManager : BookStore {
     }
 
     override fun findAll(userid: String, bookingsList: MutableLiveData<List<BookModel>>) {
-        Timber.i("Booking List 2")
         Timber.i(userid)
         database.child("user-bookings").child(userid)
             .addValueEventListener(object : ValueEventListener {
@@ -24,7 +23,6 @@ object FirebaseDBManager : BookStore {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    Timber.i("Booking List 3")
                     val localList = ArrayList<BookModel>()
                     val children = snapshot.children
                     children.forEach {
@@ -33,7 +31,6 @@ object FirebaseDBManager : BookStore {
                     }
                     database.child("user-bookings").child(userid)
                         .removeEventListener(this)
-                    Timber.i("Booking List 4")
                     bookingsList.value = localList
                 }
             })
@@ -82,8 +79,8 @@ object FirebaseDBManager : BookStore {
         val bookingValue = booking.toMap()
 
         val childUpdate : MutableMap<String, Any?> = HashMap()
-        childUpdate["booking/$bookingid"] = bookingValue
-        childUpdate["user-booking/$userid/$bookingid"] = bookingValue
+        childUpdate["bookings/$bookingid"] = bookingValue
+        childUpdate["user-bookings/$userid/$bookingid"] = bookingValue
 
         database.updateChildren(childUpdate)
     }

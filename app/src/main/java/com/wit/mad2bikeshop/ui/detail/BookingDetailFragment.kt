@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.firebase.auth.FirebaseAuth
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.databinding.BookingDetailFragmentBinding
+import com.wit.mad2bikeshop.model.BookModel
 import com.wit.mad2bikeshop.ui.auth.LoggedInViewModel
 import com.wit.mad2bikeshop.ui.bookingList.BookingListViewModel
 import timber.log.Timber
@@ -51,10 +52,15 @@ class BookingDetailFragment : Fragment() {
         detailViewModel.observableBooking.observe(viewLifecycleOwner, Observer { render() })
 
         fragBinding.editDonationButton.setOnClickListener {
+            Timber.i("RFOX")
+            Timber.i(detailViewModel.observableBooking.value?.uid!!)
+            Timber.i(fragBinding.bookingvm?.observableBooking!!.value!!.toString())
             detailViewModel.updateBook(user?.uid!!,
+                detailViewModel.observableBooking.value?.uid!!,
+                fragBinding.bookingvm?.observableBooking!!.value!!)
 
-               //may have issues with toString below!!!!!!!
-                args.bookingid, fragBinding.bookingvm?.observableBooking!!.value!!)
+//            (viewHolder.itemView.tag as BookModel).uid!!)
+
             //Force Reload of list to guarantee refresh
             bookingListViewModel.load()
             findNavController().navigateUp()

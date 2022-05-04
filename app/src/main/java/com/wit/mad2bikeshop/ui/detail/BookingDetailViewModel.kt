@@ -28,9 +28,18 @@ class BookingDetailViewModel : ViewModel() {
         }
     }
 
+    fun delete(userid: String, id: String) {
+        try {
+            FirebaseDBManager.delete(userid,id)
+            Timber.i("Booking Deleted ")
+        }
+        catch (e: Exception) {
+            Timber.i("Booking Delete Error : $e.message")
+        }
+    }
+
     fun updateBook(userid:String, id: String,booking: BookModel) {
         try {
-            //BookManager.update(email, id, booking)
             FirebaseDBManager.update(userid, id, booking)
             Timber.i("Detail update() Success : $booking")
         }
