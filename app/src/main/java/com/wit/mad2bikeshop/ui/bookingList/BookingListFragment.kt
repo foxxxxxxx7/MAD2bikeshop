@@ -125,7 +125,8 @@ class BookingListFragment : Fragment(), BookListener {
     }
 
     private fun render(bookingList: ArrayList<BookModel>) {
-        fragBinding.recyclerView.adapter = BookAdapter(bookingList, this )
+        fragBinding.recyclerView.adapter = BookAdapter(bookingList, this , bookingListViewModel.readOnly.value!!
+        )
         if (bookingList.isEmpty()) {
             fragBinding.recyclerView.visibility = View.GONE
             fragBinding.bookingsNotFound.visibility = View.VISIBLE
@@ -141,6 +142,9 @@ class BookingListFragment : Fragment(), BookListener {
         fragBinding.swiperefresh.setOnRefreshListener {
             fragBinding.swiperefresh.isRefreshing = true
             showLoader(loader,"Downloading Booking")
+            if(bookingListViewModel.readOnly.value!!)
+                bookingListViewModel.loadAll()
+            else
             bookingListViewModel.load()
 
         }
@@ -189,6 +193,7 @@ class BookingListFragment : Fragment(), BookListener {
 
     override fun onBookingClick(booking: BookModel) {
         val action = BookingListFragmentDirections.actionBookingListFragmentToBookingDetailFragment(booking.uid!!)
+        if(!bookingListViewModel.readOnly.value!!)
         findNavController().navigate(action)
     }
 
