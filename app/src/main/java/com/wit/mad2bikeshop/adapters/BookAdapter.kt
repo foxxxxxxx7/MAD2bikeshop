@@ -2,10 +2,14 @@ package com.wit.mad2bikeshop.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.MemoryPolicy
+import com.squareup.picasso.Picasso
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.databinding.CardBookBinding
 import com.wit.mad2bikeshop.model.BookModel
+import com.wit.mad2bikeshop.utils.customTransformation
 
 interface BookListener {
 //    fun onDeleteBooking(booking: BookModel)
@@ -43,6 +47,7 @@ class BookAdapter constructor(
         fun bind(booking: BookModel, listener: BookListener) {
             binding.root.tag = booking
             binding.booking = booking
+//
 //            binding.name.text = booking.name
 //            binding.phoneNumber.text = booking.phoneNumber
 //            binding.date.text = booking.date

@@ -13,11 +13,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
 import com.google.firebase.auth.FirebaseUser
+import com.squareup.picasso.Picasso
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.databinding.HomeBinding
 import com.wit.mad2bikeshop.databinding.NavHeaderBinding
 import com.wit.mad2bikeshop.ui.auth.LoggedInViewModel
 import com.wit.mad2bikeshop.ui.auth.Login
+import com.wit.mad2bikeshop.utils.customTransformation
 
 class Home : AppCompatActivity() {
 
@@ -75,6 +77,14 @@ class Home : AppCompatActivity() {
         navHeaderBinding = NavHeaderBinding.bind(headerView)
         navHeaderBinding.navHeaderEmail.text = currentUser.email
         navHeaderBinding.navHeaderName.text = currentUser.displayName
+        if(currentUser.photoUrl != null && currentUser.displayName != null) {
+            navHeaderBinding.navHeaderName.text = currentUser.displayName
+            Picasso.get().load(currentUser.photoUrl)
+                .resize(200, 200)
+                .transform(customTransformation())
+                .centerCrop()
+                .into(navHeaderBinding.navHeaderImage)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

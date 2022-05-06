@@ -21,27 +21,28 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <Button
-            android:id="@+id/buttonUpdate"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
+
+        //android:text="@string/date"
+
+        <ImageView
+            android:id="@+id/imageIcon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_alignParentTop="true"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="4dp"
-            android:layout_toEndOf="@+id/name"
-            android:text="@string/update"
-            android:textSize="16sp" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="15dp"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@mipmap/ic_launcher_round" />
 
         <TextView
             android:id="@+id/date"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/phoneNumber"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="2dp"
             android:text="@{booking.date}"
             android:textSize="24sp" />
-        //android:text="@string/date"
 
         <TextView
             android:id="@+id/name"
@@ -49,32 +50,21 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="0dp"
-            android:textSize="24sp"
+            android:layout_marginTop="2dp"
             android:text="@{booking.name}"
+            android:textSize="24sp"
             tools:text="@string/name" />
 
         <TextView
             android:id="@+id/phoneNumber"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/buttonUpdate"
-            android:layout_marginTop="10dp"
+            android:layout_below="@+id/name"
+            android:layout_marginTop="2dp"
             android:text="@{booking.phoneNumber}"
             android:textSize="24sp" />
         //android:text="@string/phoneNumber"
 
-        <Button
-            android:id="@+id/buttonDelete"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/buttonUpdate"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="56dp"
-            android:layout_toEndOf="@+id/date"
-            android:text="@string/delete"
-            android:textSize="16sp" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
