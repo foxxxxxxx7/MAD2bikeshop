@@ -20,6 +20,7 @@ class BookingListViewModel : ViewModel() {
 
     var liveFirebaseUser = MutableLiveData<FirebaseUser>()
     val user = FirebaseAuth.getInstance().currentUser
+    var readOnly = MutableLiveData(false)
     //var  ussser = LoggedInViewModel.liveFirebaseUser
 
 
@@ -33,6 +34,7 @@ class BookingListViewModel : ViewModel() {
 
     fun load() {
         try {
+            readOnly.value = false
             //DonationManager.findAll(liveFirebaseUser.value?.email!!, donationsList)
             Timber.i("Booking List 1")
             //Timber.i(liveFirebaseUser.value?.uid!!)
@@ -68,6 +70,17 @@ class BookingListViewModel : ViewModel() {
             Timber.i("Booking List Delete Success")
         } catch (e: Exception) {
             Timber.i("Booking List Delete Error : $e.message")
+        }
+    }
+
+    fun loadAll() {
+        try {
+            readOnly.value = true
+            FirebaseDBManager.findAll(bookingsList)
+            Timber.i("Booking List LoadAll Success : ${bookingsList.value.toString()}")
+        }
+        catch (e: Exception) {
+            Timber.i("Booking List LoadAll Error : $e.message")
         }
     }
 }
