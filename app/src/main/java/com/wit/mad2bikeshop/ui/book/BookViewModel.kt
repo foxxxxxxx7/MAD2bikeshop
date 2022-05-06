@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseUser
 import com.wit.mad2bikeshop.firebase.FirebaseDBManager
+import com.wit.mad2bikeshop.firebase.FirebaseImageManager
 import com.wit.mad2bikeshop.model.BookManager
 import com.wit.mad2bikeshop.model.BookModel
 
@@ -18,7 +19,7 @@ class BookViewModel : ViewModel() {
     fun addBook(firebaseUser: MutableLiveData<FirebaseUser>,
                 booking: BookModel) {
         status.value = try {
-            //DonationManager.create(donation)
+            booking.profilepic = FirebaseImageManager.imageUri.value.toString()
             FirebaseDBManager.create(firebaseUser,booking)
             true
         } catch (e: IllegalArgumentException) {

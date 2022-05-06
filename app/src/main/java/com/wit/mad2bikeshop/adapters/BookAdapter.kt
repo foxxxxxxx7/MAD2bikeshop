@@ -51,6 +51,11 @@ class BookAdapter constructor(
             binding.root.tag = booking
             binding.booking = booking
             binding.imageIcon.setImageResource(R.mipmap.ic_launcher_round)
+            Picasso.get().load(booking.profilepic.toUri())
+                .resize(200, 200)
+                .transform(customTransformation())
+                .centerCrop()
+                .into(binding.imageIcon)
 //
 //            binding.name.text = booking.name
 //            binding.phoneNumber.text = booking.phoneNumber
