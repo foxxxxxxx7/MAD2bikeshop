@@ -19,14 +19,15 @@ interface BookListener {
 
 class BookAdapter constructor(
     private var bookings: ArrayList<BookModel>,
-    private val listener: BookListener)
+    private val listener: BookListener,
+    private val readOnly: Boolean)
     : RecyclerView.Adapter<BookAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         val binding = CardBookBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return MainHolder(binding)
+        return MainHolder(binding, readOnly)
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
@@ -41,12 +42,15 @@ class BookAdapter constructor(
 
     override fun getItemCount(): Int = bookings.size
 
-    inner class MainHolder(val binding: CardBookBinding) :
+    inner class MainHolder(val binding: CardBookBinding,private val readOnly : Boolean) :
                             RecyclerView.ViewHolder(binding.root) {
+
+        val readOnlyRow = readOnly
 
         fun bind(booking: BookModel, listener: BookListener) {
             binding.root.tag = booking
             binding.booking = booking
+            binding.imageIcon.setImageResource(R.mipmap.ic_launcher_round)
 //
 //            binding.name.text = booking.name
 //            binding.phoneNumber.text = booking.phoneNumber
