@@ -11,7 +11,25 @@ var database: DatabaseReference = FirebaseDatabase.getInstance("https://viking-b
 
 object FirebaseDBManager : BookStore {
     override fun findAll(bookingsList: MutableLiveData<List<BookModel>>) {
-        TODO("Not yet implemented")
+        database.child("bookings")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    Timber.i("Firebase Booking error : ${error.message}")
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val localList = ArrayList<BookModel>()
+                    val children = snapshot.children
+                    children.forEach {
+                        val booking = it.getValue(BookModel::class.java)
+                        localList.add(booking!!)
+                    }
+                    database.child("bookings")
+                        .removeEventListener(this)
+
+                    bookingsList.value = localList
+                }
+            })
     }
 
     override fun findAll(userid: String, bookingsList: MutableLiveData<List<BookModel>>) {
