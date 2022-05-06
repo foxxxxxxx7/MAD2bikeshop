@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -105,9 +106,19 @@ class BookingListFragment : Fragment(), BookListener {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_booking_list, menu)
+
+        val item = menu.findItem(R.id.toggleBookings) as MenuItem
+        item.setActionView(R.layout.togglebutton_layout)
+        val toggleBookings: SwitchCompat = item.actionView.findViewById(R.id.toggleButton)
+        toggleBookings.isChecked = false
+
+        toggleBookings.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) bookingListViewModel.loadAll()
+            else bookingListViewModel.load()
+        }
+
         super.onCreateOptionsMenu(menu, inflater)
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return NavigationUI.onNavDestinationSelected(item,
             requireView().findNavController()) || super.onOptionsItemSelected(item)
