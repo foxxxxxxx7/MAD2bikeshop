@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
+import com.google.android.gms.common.SignInButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.wit.mad2bikeshop.R
@@ -40,6 +41,9 @@ class Login : AppCompatActivity() {
             createAccount(loginBinding.fieldEmail.text.toString(),
                 loginBinding.fieldPassword.text.toString())
         }
+
+        loginBinding.googleSignInButton.setSize(SignInButton.SIZE_WIDE)
+        loginBinding.googleSignInButton.setColorScheme(0)
     }
 
     public override fun onStart() {
