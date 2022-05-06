@@ -88,10 +88,6 @@ object FirebaseImageManager {
 
     fun updateDefaultImage(userid: String, resource: Int, imageView: ImageView) {
         Picasso.get().load(resource)
-            .resize(200, 200)
-            .transform(customTransformation())
-            .memoryPolicy(MemoryPolicy.NO_CACHE)
-            .centerCrop()
             .into(object : Target {
                 override fun onBitmapLoaded(bitmap: Bitmap?,
                                             from: Picasso.LoadedFrom?

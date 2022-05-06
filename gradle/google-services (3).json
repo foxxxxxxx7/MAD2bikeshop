@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "219581882040",
+    "firebase_url": "https://viking-bike-hire-13ed9-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "viking-bike-hire-13ed9",
+    "storage_bucket": "viking-bike-hire-13ed9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:219581882040:android:fc0db255f6b23a10011e4d",
+        "android_client_info": {
+          "package_name": "com.wit.mad2bikeshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "219581882040-jmqoj1olnsa5uvc11mb93jdp0hnko559.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWUWW12LWgR2Or4BSmrOA1GYP5OLdTI0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "219581882040-2o40t4lsf2e57e93r1cptodj0dnkcb6g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

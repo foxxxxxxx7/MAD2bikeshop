@@ -1,9 +1,11 @@
 package com.wit.mad2bikeshop.ui.home
 
 import android.content.Intent
+import android.net.Uri
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -17,9 +19,11 @@ import com.squareup.picasso.Picasso
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.databinding.HomeBinding
 import com.wit.mad2bikeshop.databinding.NavHeaderBinding
+import com.wit.mad2bikeshop.firebase.FirebaseImageManager
 import com.wit.mad2bikeshop.ui.auth.LoggedInViewModel
 import com.wit.mad2bikeshop.ui.auth.Login
 import com.wit.mad2bikeshop.utils.customTransformation
+import timber.log.Timber
 
 class Home : AppCompatActivity() {
 
@@ -28,6 +32,7 @@ class Home : AppCompatActivity() {
     private lateinit var navHeaderBinding: NavHeaderBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var loggedInViewModel: LoggedInViewModel
+    private lateinit var headerView : View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +59,7 @@ class Home : AppCompatActivity() {
 
         val navView = homeBinding.navView
         navView.setupWithNavController(navController)
+        initNavHeader()
     }
 
     public override fun onStart() {
@@ -61,7 +67,7 @@ class Home : AppCompatActivity() {
         loggedInViewModel = ViewModelProvider(this).get(LoggedInViewModel::class.java)
         loggedInViewModel.liveFirebaseUser.observe(this, Observer { firebaseUser ->
             if (firebaseUser != null)
-                updateNavHeader(loggedInViewModel.liveFirebaseUser.value!!)
+                updateNavHeader(firebaseUser)
         })
 
         loggedInViewModel.loggedOut.observe(this, Observer { loggedout ->
@@ -72,19 +78,45 @@ class Home : AppCompatActivity() {
 
     }
 
-    private fun updateNavHeader(currentUser: FirebaseUser) {
-        var headerView = homeBinding.navView.getHeaderView(0)
+    private fun initNavHeader() {
+        Timber.i("DX Init Nav Header")
+        headerView = homeBinding.navView.getHeaderView(0)
         navHeaderBinding = NavHeaderBinding.bind(headerView)
+    }
+
+    private fun updateNavHeader(currentUser: FirebaseUser) {
+        FirebaseImageManager.imageUri.observe(this, { result ->
+            if(result == Uri.EMPTY) {
+                Timber.i("DX NO Existing imageUri")
+                if (currentUser.photoUrl != null) {
+                    //if you're a google user
+                    FirebaseImageManager.updateUserImage(
+                        currentUser.uid,
+                        currentUser.photoUrl,
+                        navHeaderBinding.navHeaderImage,
+                        false)
+                }
+                else
+                {
+                    Timber.i("DX Loading Existing Default imageUri")
+                    FirebaseImageManager.updateDefaultImage(
+                        currentUser.uid,
+                        R.drawable.ic_book_nav_header,
+                        navHeaderBinding.navHeaderImage)
+                }
+            }
+            else // load existing image from firebase
+            {
+                Timber.i("DX Loading Existing imageUri")
+                FirebaseImageManager.updateUserImage(
+                    currentUser.uid,
+                    FirebaseImageManager.imageUri.value,
+                    navHeaderBinding.navHeaderImage, false)
+            }
+        })
         navHeaderBinding.navHeaderEmail.text = currentUser.email
-        navHeaderBinding.navHeaderName.text = currentUser.displayName
-        if(currentUser.photoUrl != null && currentUser.displayName != null) {
+        if(currentUser.displayName != null)
             navHeaderBinding.navHeaderName.text = currentUser.displayName
-            Picasso.get().load(currentUser.photoUrl)
-                .resize(200, 200)
-                .transform(customTransformation())
-                .centerCrop()
-                .into(navHeaderBinding.navHeaderImage)
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
