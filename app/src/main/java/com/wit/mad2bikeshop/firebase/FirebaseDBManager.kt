@@ -7,7 +7,7 @@ import com.wit.mad2bikeshop.model.BookModel
 import com.wit.mad2bikeshop.model.BookStore
 import timber.log.Timber
 
-var database: DatabaseReference = FirebaseDatabase.getInstance("https://viking-bike-hire-13ed9-default-rtdb.europe-west1.firebasedatabase.app").getReference()
+var database: DatabaseReference = FirebaseDatabase.getInstance.("https://viking-bike-hire-13ed9-default-rtdb.europe-west1.firebasedatabase.app").getReference()
 
 object FirebaseDBManager : BookStore {
     override fun findAll(bookingsList: MutableLiveData<List<BookModel>>) {
@@ -101,5 +101,26 @@ object FirebaseDBManager : BookStore {
         childUpdate["user-bookings/$userid/$bookingid"] = bookingValue
 
         database.updateChildren(childUpdate)
+    }
+
+    fun updateImageRef(userid: String,imageUri: String) {
+
+        val userBookings = database.child("user-bookings").child(userid)
+        val allBookings = database.child("bookings")
+
+        userBookings.addListenerForSingleValueEvent(
+            object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {}
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    snapshot.children.forEach {
+                        //Update Users imageUri
+                        it.ref.child("profilepic").setValue(imageUri)
+                        //Update all bookings that match 'it'
+                        val booking = it.getValue(BookModel::class.java)
+                        allBookings.child(booking!!.uid!!)
+                            .child("profilepic").setValue(imageUri)
+                    }
+                }
+            })
     }
 }
