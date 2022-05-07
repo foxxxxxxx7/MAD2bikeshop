@@ -58,7 +58,7 @@ class Home : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.bookFragment, R.id.bookingListFragment
+                R.id.bookFragment, R.id.bookingListFragment, R.id.mapsFragment
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

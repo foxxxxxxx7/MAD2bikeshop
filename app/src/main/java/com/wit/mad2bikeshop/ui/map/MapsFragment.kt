@@ -3,9 +3,9 @@ package com.wit.mad2bikeshop.ui.map
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.widget.SwitchCompat
+import androidx.fragment.app.activityViewModels
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -13,8 +13,11 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.wit.mad2bikeshop.R
+import com.wit.mad2bikeshop.ui.bookingList.BookingListViewModel
 
 class MapsFragment : Fragment() {
+
+    private val bookingListViewModel: BookingListViewModel by activityViewModels()
 
     private val callback = OnMapReadyCallback { googleMap ->
         /**
@@ -43,5 +46,19 @@ class MapsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_map, menu)
+
+        val item = menu.findItem(R.id.toggleBookings) as MenuItem
+        item.setActionView(R.layout.togglebutton_layout)
+        val toggleBookings: SwitchCompat = item.actionView.findViewById(R.id.toggleButton)
+        toggleBookings.isChecked = false
+
+        toggleBookings.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) bookingListViewModel.loadAll()
+            else bookingListViewModel.load()
+        }
     }
 }
