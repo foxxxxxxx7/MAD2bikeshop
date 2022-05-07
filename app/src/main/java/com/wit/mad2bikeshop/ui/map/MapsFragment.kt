@@ -1,5 +1,6 @@
 package com.wit.mad2bikeshop.ui.map
 
+import android.annotation.SuppressLint
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
@@ -19,20 +20,23 @@ import com.wit.mad2bikeshop.ui.bookingList.BookingListViewModel
 class MapsFragment : Fragment() {
 
     private val bookingListViewModel: BookingListViewModel by activityViewModels()
-    private lateinit var mapsViewModel: MapsViewModel
-
+    private val mapsViewModel: MapsViewModel by activityViewModels()
+    @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         mapsViewModel.map = googleMap
+        mapsViewModel.map.isMyLocationEnabled = true
 
         mapsViewModel.map.uiSettings.isZoomControlsEnabled = true
         mapsViewModel.map.uiSettings.isMyLocationButtonEnabled = true
+        val loc = LatLng(mapsViewModel.currentLocation.value!!.latitude,
+            mapsViewModel.currentLocation.value!!.longitude)
         val waterfordDepot = LatLng(52.260791, -7.105922)
         val kilmacthomasDepot = LatLng(52.204365250330284, -7.425864411634394)
         val dungarvanDepot = LatLng(52.08538860777265, -7.623179554066156)
         googleMap.addMarker(MarkerOptions().position(waterfordDepot).title("Viking Bike Hire Waterford Depot"))
         googleMap.addMarker(MarkerOptions().position(kilmacthomasDepot).title("Viking Bike Hire Kilmacthomas Depot"))
         googleMap.addMarker(MarkerOptions().position(dungarvanDepot).title("Viking Bike Hire Dungarvan Depot"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(kilmacthomasDepot, 9f))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 9f))
     }
 
     override fun onCreateView(
@@ -40,7 +44,7 @@ class MapsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mapsViewModel = ViewModelProvider(this).get(MapsViewModel::class.java)
+//        mapsViewModel = ViewModelProvider(this).get(MapsViewModel::class.java)
 
         return inflater.inflate(R.layout.fragment_maps, container, false)
     }
