@@ -12,6 +12,10 @@
             android:id="@+id/bookingListFragment"
             android:icon="@drawable/ic_menu_bookinglist"
             android:title="@string/action_booklist" />
+        <item
+            android:id="@+id/mapsFragment"
+            android:icon="@drawable/ic_menu_location"
+            android:title="@string/action_location" />
     </group>
 
     <item android:title="@string/group_communicate">
