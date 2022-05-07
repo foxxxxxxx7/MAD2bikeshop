@@ -41,4 +41,13 @@
             android:name="bookingid"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.wit.mad2bikeshop.ui.map.MapsFragment"
+        android:label="Booking Maps"
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_bookingDetailFragment"
+            app:destination="@id/bookingDetailFragment" />
+    </fragment>
 </navigation>
