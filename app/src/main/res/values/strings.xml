@@ -28,7 +28,7 @@
     <string name="action_booklist">Booking History</string>
     <string name="action_details">Booking Details</string>
     <string name="action_location">Location</string>
-    
+
     <string name="total">Total so Far</string>
     <string name="totalSoFar">$ Total</string>
     <string name="nameHint">Please Enter Your Full Name:</string>
