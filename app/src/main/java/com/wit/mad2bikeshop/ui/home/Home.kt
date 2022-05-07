@@ -1,6 +1,8 @@
 package com.wit.mad2bikeshop.ui.home
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.location.Location
 import android.net.Uri
 
 import android.os.Bundle
@@ -9,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -25,9 +28,8 @@ import com.wit.mad2bikeshop.databinding.NavHeaderBinding
 import com.wit.mad2bikeshop.firebase.FirebaseImageManager
 import com.wit.mad2bikeshop.ui.auth.LoggedInViewModel
 import com.wit.mad2bikeshop.ui.auth.Login
-import com.wit.mad2bikeshop.utils.customTransformation
-import com.wit.mad2bikeshop.utils.readImageUri
-import com.wit.mad2bikeshop.utils.showImagePicker
+import com.wit.mad2bikeshop.ui.map.MapsViewModel
+import com.wit.mad2bikeshop.utils.*
 import timber.log.Timber
 
 class Home : AppCompatActivity() {
@@ -39,6 +41,7 @@ class Home : AppCompatActivity() {
     private lateinit var loggedInViewModel: LoggedInViewModel
     private lateinit var headerView : View
     private lateinit var intentLauncher : ActivityResultLauncher<Intent>
+    private val mapsViewModel : MapsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +69,24 @@ class Home : AppCompatActivity() {
         val navView = homeBinding.navView
         navView.setupWithNavController(navController)
         initNavHeader()
+
+        if(checkLocationPermissions(this)) {
+            mapsViewModel.updateCurrentLocation()
+        }
+    }
+    @SuppressLint("MissingPermission")
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (isPermissionGranted(requestCode, grantResults))
+            mapsViewModel.updateCurrentLocation()
+        else {
+            // permissions denied, so use a default location
+            mapsViewModel.currentLocation.value = Location("Default").apply {
+                latitude = 52.260791
+                longitude = -7.105922
+            }
+        }
+        Timber.i("LOC : %s", mapsViewModel.currentLocation.value)
     }
 
     public override fun onStart() {
