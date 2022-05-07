@@ -1,5 +1,6 @@
 package com.wit.mad2bikeshop.utils
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
@@ -14,6 +15,7 @@ import com.makeramen.roundedimageview.RoundedTransformationBuilder
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Transformation
+import java.io.IOException
 
 fun createLoader(activity: FragmentActivity) : AlertDialog {
     val loaderBuilder = AlertDialog.Builder(activity)
@@ -54,6 +56,24 @@ fun serviceAvailableMessage(activity: FragmentActivity) {
     ).show()
 }
 
+fun showImagePicker(intentLauncher : ActivityResultLauncher<Intent>) {
+    var chooseFile = Intent(Intent.ACTION_OPEN_DOCUMENT)
+    chooseFile.type = "image/*"
+    chooseFile = Intent.createChooser(chooseFile, R.string.select_profile_image.toString())
+    intentLauncher.launch(chooseFile)
+}
+
+fun readImageUri(resultCode: Int, data: Intent?): Uri? {
+    var uri: Uri? = null
+    if (resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+        try { uri = data.data }
+        catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+    return uri
+}
+
 fun customTransformation() : Transformation =
     RoundedTransformationBuilder()
         .borderColor(Color.WHITE)
@@ -61,3 +81,4 @@ fun customTransformation() : Transformation =
         .cornerRadiusDp(35F)
         .oval(false)
         .build()
+
