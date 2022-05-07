@@ -29,9 +29,13 @@ class MapsFragment : Fragment() {
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val vikingBikeHireLocationW = LatLng(52.260791, -7.105922)
+        val vikingBikeHireLocationK = LatLng(52.204365250330284, -7.425864411634394)
+        val vikingBikeHireLocationD = LatLng(52.08538860777265, -7.623179554066156)
+        googleMap.addMarker(MarkerOptions().position(vikingBikeHireLocationW).title("Viking Bike Hire Waterford Depot"))
+        googleMap.addMarker(MarkerOptions().position(vikingBikeHireLocationK).title("Viking Bike Hire Kilmacthomas Depot"))
+        googleMap.addMarker(MarkerOptions().position(vikingBikeHireLocationD).title("Viking Bike Hire Dungarvan Depot"))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(vikingBikeHireLocationK, 9f))
     }
 
     override fun onCreateView(
