@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.ui.bookingList.BookingListViewModel
+import timber.log.Timber
 
 class MapsFragment : Fragment() {
 
@@ -23,20 +24,26 @@ class MapsFragment : Fragment() {
     private val mapsViewModel: MapsViewModel by activityViewModels()
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
+
         mapsViewModel.map = googleMap
         mapsViewModel.map.isMyLocationEnabled = true
 
-        mapsViewModel.map.uiSettings.isZoomControlsEnabled = true
-        mapsViewModel.map.uiSettings.isMyLocationButtonEnabled = true
+
         val loc = LatLng(mapsViewModel.currentLocation.value!!.latitude,
             mapsViewModel.currentLocation.value!!.longitude)
         val waterfordDepot = LatLng(52.260791, -7.105922)
         val kilmacthomasDepot = LatLng(52.204365250330284, -7.425864411634394)
         val dungarvanDepot = LatLng(52.08538860777265, -7.623179554066156)
+
+
         googleMap.addMarker(MarkerOptions().position(waterfordDepot).title("Viking Bike Hire Waterford Depot"))
         googleMap.addMarker(MarkerOptions().position(kilmacthomasDepot).title("Viking Bike Hire Kilmacthomas Depot"))
         googleMap.addMarker(MarkerOptions().position(dungarvanDepot).title("Viking Bike Hire Dungarvan Depot"))
+
+        mapsViewModel.map.uiSettings.isZoomControlsEnabled = true
+        mapsViewModel.map.uiSettings.isMyLocationButtonEnabled = true
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 9f))
+        Timber.i("RFOX1234")
     }
 
     override fun onCreateView(
