@@ -134,7 +134,7 @@ class MapsFragment : Fragment() {
                 if(it.email.equals(this.bookingListViewModel.liveFirebaseUser.value!!.email))
                     markerColour = BitmapDescriptorFactory.HUE_ORANGE
                 else
-                    markerColour = BitmapDescriptorFactory.HUE_AZURE + 5R
+                    markerColour = BitmapDescriptorFactory.HUE_AZURE + 5
 
                 mapsViewModel.map.addMarker(
                     MarkerOptions().position(LatLng(it.latitude, it.longitude))
