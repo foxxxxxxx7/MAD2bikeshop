@@ -108,5 +108,8 @@ dependencies {
     //Used to display gif images in the app.
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
 
+    //A dependency for the material design.
+    implementation 'com.google.android.material:material:1.6.0'
+
 
 }

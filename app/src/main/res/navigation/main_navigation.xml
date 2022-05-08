@@ -33,7 +33,7 @@
         android:id="@+id/bookingDetailFragment"
         android:name="com.wit.mad2bikeshop.ui.detail.BookingDetailFragment"
         android:label="booking_detail_fragment"
-        tools:layout="@layout/fragment_booking_detail">
+        tools:layout="@layout/booking_detail_fragment">
         <action
             android:id="@+id/action_bookingDetailFragment_to_bookingListFragment"
             app:destination="@id/bookingListFragment" />
@@ -55,4 +55,9 @@
         android:name="com.wit.mad2bikeshop.ui.about.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/Theme"
+        android:name="com.wit.mad2bikeshop.ui.theme.Theme"
+        android:label="activity_theme"
+        tools:layout="@layout/activity_theme" />
 </navigation>

@@ -2,14 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wit.mad2bikeshop">
 
-    // Allowing the app to access the location of the user.
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-
-    // This is the application tag. It is the root element of the AndroidManifest.xml file. It contains
-    // subelements that declare each of the application components and has attributes that can affect
-    // all the components.
     <application
         android:name=".main.BikeshopApp"
         android:allowBackup="true"
@@ -18,17 +13,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MAD2bikeshop.NoActionBar">
+        <activity
+            android:name=".ui.theme.Theme"
+            android:exported="false" />
 
-        // This is the API key for the Google Maps API.
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBjZGTG0f8bCqg6Bb0YmyXOj0PuZN-TE_M" />
-        // Preloading the fonts.
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        // The first activity that is launched when the app is opened.
         <activity
             android:name=".ui.splash.Splash"
             android:exported="true"
@@ -40,9 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        // Declaring the activities that are used in the app.
         <activity android:name=".ui.auth.Login" />
-
         <activity android:name=".ui.home.Home" />
     </application>
 

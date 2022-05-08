@@ -35,8 +35,6 @@ class BookFragment : Fragment() {
         super.onCreate(savedInstanceState)
         //app = activity?.application as BikeshopApp
         setHasOptionsMenu(true)
-
-
     }
 
     /**
