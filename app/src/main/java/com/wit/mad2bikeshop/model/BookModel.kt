@@ -17,9 +17,9 @@ data class BookModel(
     var date: String = "",
     var bike: Int = 0,
     var profilepic: String = "",
-    /*var lat: Double = 0.0,
+    var latitude: Double = 0.0,
     var longitude: Double = 0.0,
-    var zoom: Float = 0f,*/
+//    var zoom: Float = 0f,
     var pickup: String = "",
     var dropoff: String = "",
     var price: Double = 20.0,
@@ -39,7 +39,9 @@ data class BookModel(
             "profilepic" to profilepic,
             "pickup" to pickup,
             "dropoff" to dropoff,
-            "price" to price
+            "price" to price,
+            "latitude" to latitude,
+            "longitude" to longitude
         )
     }
 }
