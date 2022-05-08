@@ -18,8 +18,8 @@ class MapsViewModel(application: Application) : AndroidViewModel(application) {
     var currentLocation = MutableLiveData<Location>()
     var locationClient : FusedLocationProviderClient
     val locationRequest = LocationRequest.create().apply {
-        interval = 10000
-        fastestInterval = 5000
+        interval = (5*60*1000)
+        fastestInterval = (2*60*1000)
         priority = LocationRequest.PRIORITY_HIGH_ACCURACY
     }
     val locationCallback = object : LocationCallback() {

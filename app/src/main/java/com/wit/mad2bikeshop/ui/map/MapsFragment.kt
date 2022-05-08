@@ -75,6 +75,11 @@ class MapsFragment : Fragment() {
         })
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -106,6 +111,7 @@ class MapsFragment : Fragment() {
         }
     }
     private fun render(bookingsList: ArrayList<BookModel>) {
+        var markerColour: Float
         if (!bookingsList.isEmpty()) {
             mapsViewModel.map.clear()
 
@@ -125,12 +131,16 @@ class MapsFragment : Fragment() {
             )
 
             bookingsList.forEach {
+                if(it.email.equals(this.bookingListViewModel.liveFirebaseUser.value!!.email))
+                    markerColour = BitmapDescriptorFactory.HUE_AZURE + 5
+                else
+                    markerColour = BitmapDescriptorFactory.HUE_RED
+
                 mapsViewModel.map.addMarker(
                     MarkerOptions().position(LatLng(it.latitude, it.longitude))
                         .title("${it.name} €${it.phoneNumber}")
                         .snippet(it.email)
-                        .icon(
-                            BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                        .icon(BitmapDescriptorFactory.defaultMarker(markerColour ))
                 )
             }
         }
