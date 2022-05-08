@@ -18,10 +18,22 @@ import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.ui.bookingList.BookingListViewModel
 import timber.log.Timber
 
+import android.app.AlertDialog
+import androidx.lifecycle.Observer
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.wit.mad2bikeshop.model.BookModel
+import com.wit.mad2bikeshop.ui.auth.LoggedInViewModel
+import com.wit.mad2bikeshop.utils.createLoader
+import com.wit.mad2bikeshop.utils.hideLoader
+import com.wit.mad2bikeshop.utils.showLoader
+
 class MapsFragment : Fragment() {
 
     private val bookingListViewModel: BookingListViewModel by activityViewModels()
     private val mapsViewModel: MapsViewModel by activityViewModels()
+    private val loggedInViewModel : LoggedInViewModel by activityViewModels()
+    lateinit var loader : AlertDialog
+
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
 
@@ -52,7 +64,14 @@ class MapsFragment : Fragment() {
             mapsViewModel.map.uiSettings.isZoomControlsEnabled = true
             mapsViewModel.map.uiSettings.isMyLocationButtonEnabled = true
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 9f))
-            Timber.i("RFOX1234")
+
+            bookingListViewModel.observableBookingList.observe(viewLifecycleOwner, Observer { bookings ->
+                bookings?.let {
+                    render(bookings as ArrayList<BookModel>)
+                    hideLoader(loader)
+                }
+            })
+
         })
     }
 
@@ -62,6 +81,7 @@ class MapsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 //        mapsViewModel = ViewModelProvider(this).get(MapsViewModel::class.java)
+        loader = createLoader(requireActivity())
 
         return inflater.inflate(R.layout.fragment_maps, container, false)
     }
@@ -84,5 +104,30 @@ class MapsFragment : Fragment() {
             if (isChecked) bookingListViewModel.loadAll()
             else bookingListViewModel.load()
         }
+    }
+    private fun render(bookingsList: ArrayList<BookModel>) {
+        if (!bookingsList.isEmpty()) {
+            mapsViewModel.map.clear()
+            bookingsList.forEach {
+                mapsViewModel.map.addMarker(
+                    MarkerOptions().position(LatLng(it.latitude, it.longitude))
+                        .title("${it.name} €${it.phoneNumber}")
+                        .snippet(it.email)
+                        .icon(
+                            BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                )
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showLoader(loader, "Downloading Bookings")
+        loggedInViewModel.liveFirebaseUser.observe(viewLifecycleOwner, Observer { firebaseUser ->
+            if (firebaseUser != null) {
+                bookingListViewModel.liveFirebaseUser.value = firebaseUser
+                bookingListViewModel.load()
+            }
+        })
     }
 }
