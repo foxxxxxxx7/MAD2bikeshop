@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/phoneNumber"
             android:layout_marginTop="2dp"
+            android:fontFamily="@font/overpass_italic"
             android:text="@{booking.date}"
             android:textSize="24sp" />
 
@@ -51,9 +52,9 @@
             android:layout_alignParentTop="true"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="2dp"
+            android:fontFamily="@font/overpass"
             android:text="@{booking.name}"
-            android:textSize="24sp"
-            tools:text="@string/name" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/phoneNumber"
@@ -61,6 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/name"
             android:layout_marginTop="2dp"
+            android:fontFamily="@font/overpass_italic"
             android:text="@{booking.phoneNumber}"
             android:textSize="24sp" />
         //android:text="@string/phoneNumber"
