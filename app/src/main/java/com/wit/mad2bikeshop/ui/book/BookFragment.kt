@@ -15,6 +15,7 @@ import com.wit.mad2bikeshop.R
 import com.wit.mad2bikeshop.databinding.FragmentBookBinding
 import com.wit.mad2bikeshop.model.BookModel
 import com.wit.mad2bikeshop.ui.auth.LoggedInViewModel
+import com.wit.mad2bikeshop.ui.map.MapsViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -37,7 +38,7 @@ class BookFragment : Fragment() {
     private val fragBinding get() = _fragBinding!!
     private lateinit var bookViewModel: BookViewModel
     private val loggedInViewModel : LoggedInViewModel by activityViewModels()
-
+    private val mapsViewModel: MapsViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,8 +134,14 @@ class BookFragment : Fragment() {
                     Toast.makeText(context, "Booking Added!", Toast.LENGTH_LONG).show()
 //                    bookViewModel.addBook(booking.copy())
                     bookViewModel.addBook(loggedInViewModel.liveFirebaseUser,
-                        BookModel(name = booking.name, date = booking.date, phoneNumber = booking.phoneNumber, pickup = booking.pickup, dropoff = booking. dropoff,
-                            email = loggedInViewModel.liveFirebaseUser.value?.email!!)
+                        BookModel(name = booking.name,
+                            date = booking.date,
+                            phoneNumber = booking.phoneNumber,
+                            pickup = booking.pickup,
+                            dropoff = booking. dropoff,
+                            email = loggedInViewModel.liveFirebaseUser.value?.email!!,
+                            latitude = mapsViewModel.currentLocation.value!!.latitude,
+                            longitude = mapsViewModel.currentLocation.value!!.longitude)
                     )
                     print("Add Button Pressed: $layout.bookName, $layout.bookNumber, $layout.bookEmail")
                     /*setResult(AppCompatActivity.RESULT_OK)*/
