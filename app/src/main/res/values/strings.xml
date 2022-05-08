@@ -28,6 +28,7 @@
     <string name="action_booklist">Booking History</string>
     <string name="action_details">Booking Details</string>
     <string name="action_location">Locations</string>
+    <string name="action_about">About Us</string>
 
     <string name="total">Total so Far</string>
     <string name="totalSoFar">$ Total</string>
@@ -41,9 +42,13 @@
 
     <string name="bookingDetails">Booking Details</string>
     <string name="amt">Amount :</string>
-    <string name="payment">Payment :</string>
-    <string name="message">Message :</string>
-    <string name="upvotes">UpVotes :</string>
+
+
+    <string name="aboutus_message">Go Biking with Viking!</string>
+    <string name="callUs">Call Us At: 0830648694</string>
+    <string name="emailUs">Email Us At: VBH@Gmail.ie</string>
+    <string name="address">Address: 129A Parade Quay</string>
+
 
     <string name="update">Update</string>
     <string name="delete">Delete</string>
@@ -52,8 +57,8 @@
     <string name="action_share">Share</string>
     <string name="action_send">Send</string>
     <string name="group_communicate">Communicate</string>
+    <string name="nav_header_subtitle">Viking Biking</string>
     <string name="nav_header_title">Viking Bike Hire</string>
-    <string name="nav_header_subtitle">Go Biking with Viking!</string>
     <string name="nav_header_desc">Navigation header</string>
 
     <string name="label_emailpassword">Email/Password Authentication</string>

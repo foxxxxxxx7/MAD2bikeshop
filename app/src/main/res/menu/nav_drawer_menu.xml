@@ -16,6 +16,10 @@
             android:id="@+id/mapsFragment"
             android:icon="@drawable/ic_menu_location"
             android:title="@string/action_location" />
+        <item
+            android:id="@+id/aboutFragment"
+            android:icon="@drawable/ic_menu_about"
+            android:title="@string/action_about" />
     </group>
 
     <item android:title="@string/group_communicate">
