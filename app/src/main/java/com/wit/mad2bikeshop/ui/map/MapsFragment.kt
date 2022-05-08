@@ -28,22 +28,32 @@ class MapsFragment : Fragment() {
         mapsViewModel.map = googleMap
         mapsViewModel.map.isMyLocationEnabled = true
 
+        mapsViewModel.currentLocation.observe(viewLifecycleOwner, {
+            val loc = LatLng(
+                mapsViewModel.currentLocation.value!!.latitude,
+                mapsViewModel.currentLocation.value!!.longitude
+            )
+            val waterfordDepot = LatLng(52.260791, -7.105922)
+            val kilmacthomasDepot = LatLng(52.204365250330284, -7.425864411634394)
+            val dungarvanDepot = LatLng(52.08538860777265, -7.623179554066156)
 
-        val loc = LatLng(mapsViewModel.currentLocation.value!!.latitude,
-            mapsViewModel.currentLocation.value!!.longitude)
-        val waterfordDepot = LatLng(52.260791, -7.105922)
-        val kilmacthomasDepot = LatLng(52.204365250330284, -7.425864411634394)
-        val dungarvanDepot = LatLng(52.08538860777265, -7.623179554066156)
 
+            googleMap.addMarker(
+                MarkerOptions().position(waterfordDepot).title("Viking Bike Hire Waterford Depot")
+            )
+            googleMap.addMarker(
+                MarkerOptions().position(kilmacthomasDepot)
+                    .title("Viking Bike Hire Kilmacthomas Depot")
+            )
+            googleMap.addMarker(
+                MarkerOptions().position(dungarvanDepot).title("Viking Bike Hire Dungarvan Depot")
+            )
 
-        googleMap.addMarker(MarkerOptions().position(waterfordDepot).title("Viking Bike Hire Waterford Depot"))
-        googleMap.addMarker(MarkerOptions().position(kilmacthomasDepot).title("Viking Bike Hire Kilmacthomas Depot"))
-        googleMap.addMarker(MarkerOptions().position(dungarvanDepot).title("Viking Bike Hire Dungarvan Depot"))
-
-        mapsViewModel.map.uiSettings.isZoomControlsEnabled = true
-        mapsViewModel.map.uiSettings.isMyLocationButtonEnabled = true
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 9f))
-        Timber.i("RFOX1234")
+            mapsViewModel.map.uiSettings.isZoomControlsEnabled = true
+            mapsViewModel.map.uiSettings.isMyLocationButtonEnabled = true
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 9f))
+            Timber.i("RFOX1234")
+        })
     }
 
     override fun onCreateView(
