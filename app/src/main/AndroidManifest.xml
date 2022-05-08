@@ -30,7 +30,7 @@
             android:value="AIzaSyBjZGTG0f8bCqg6Bb0YmyXOj0PuZN-TE_M" />
 
         <activity
-            android:name=".ui.auth.Login"
+            android:name=".ui.splash.Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,7 +38,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.home.Home"></activity>
+        <activity android:name=".ui.auth.Login" />
+
+        <activity android:name=".ui.home.Home" />
     </application>
 
 </manifest>
