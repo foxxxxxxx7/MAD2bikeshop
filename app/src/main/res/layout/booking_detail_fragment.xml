@@ -1,270 +1,269 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="bookingvm"
             type="com.wit.mad2bikeshop.ui.detail.BookingDetailViewModel" />
     </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.detail.BookingDetailFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.detail.BookingDetailFragment">
 
-    <TextView
-        android:id="@+id/detailPrice2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/bikeType"
-        android:textAlignment="textEnd"
-        android:textColor="@color/bloodorange"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editPrice"
-        app:layout_constraintHorizontal_bias="0.702"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailPrice" />
+        <TextView
+            android:id="@+id/detailPrice2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/bikeType"
+            android:textAlignment="textEnd"
+            android:textColor="@color/bloodorange"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/editPrice"
+            app:layout_constraintHorizontal_bias="0.702"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailPrice" />
 
-    <EditText
-        android:id="@+id/editDropoff"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="text"
-        android:textSize="24sp"
-        android:text="@={bookingvm.observableBooking.dropoff}"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPickup" />
+        <EditText
+            android:id="@+id/editDropoff"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="@={bookingvm.observableBooking.dropoff}"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editPickup" />
 
-    <EditText
-        android:id="@+id/editPrice"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="number"
-        android:textSize="24sp"
-        android:text="@={``+ bookingvm.observableBooking.price}"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDropoff" />
+        <EditText
+            android:id="@+id/editPrice"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="@={``+ bookingvm.observableBooking.price}"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editDropoff" />
 
-<!--    <EditText-->
-<!--        android:id="@+id/editID"-->
-<!--        android:layout_width="220dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="8dp"-->
-<!--        android:ems="10"-->
-<!--        android:inputType="text"-->
-<!--        android:textSize="24sp"-->
-<!--        android:text="@={``+ bookingvm.observableBooking.id}"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/deleteDonationButton"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/editPrice"-->
-<!--        app:layout_constraintVertical_bias="0.971" />-->
+        <!--    <EditText-->
+        <!--        android:id="@+id/editID"-->
+        <!--        android:layout_width="220dp"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_marginEnd="8dp"-->
+        <!--        android:ems="10"-->
+        <!--        android:inputType="text"-->
+        <!--        android:textSize="24sp"-->
+        <!--        android:text="@={``+ bookingvm.observableBooking.id}"-->
+        <!--        app:layout_constraintBottom_toTopOf="@+id/deleteDonationButton"-->
+        <!--        app:layout_constraintEnd_toEndOf="parent"-->
+        <!--        app:layout_constraintTop_toBottomOf="@+id/editPrice"-->
+        <!--        app:layout_constraintVertical_bias="0.971" />-->
 
-    <EditText
-        android:id="@+id/editPickup"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="text"
-        android:textSize="24sp"
-        android:text="@={bookingvm.observableBooking.pickup}"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editEmail" />
+        <EditText
+            android:id="@+id/editPickup"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="@={bookingvm.observableBooking.pickup}"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editEmail" />
 
-    <TextView
-        android:id="@+id/detailPickup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/pickup"
-        android:textAlignment="textEnd"
-        android:textColor="@color/bloodorange"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editPickup"
-        app:layout_constraintHorizontal_bias="0.754"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailEmail" />
+        <TextView
+            android:id="@+id/detailPickup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/pickup"
+            android:textAlignment="textEnd"
+            android:textColor="@color/bloodorange"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/editPickup"
+            app:layout_constraintHorizontal_bias="0.754"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailEmail" />
 
-    <TextView
-        android:id="@+id/detailDropoff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/dropoff"
-        android:textAlignment="textEnd"
-        android:textColor="@color/bloodorange"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editDropoff"
-        app:layout_constraintHorizontal_bias="0.731"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailPickup" />
+        <TextView
+            android:id="@+id/detailDropoff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/dropoff"
+            android:textAlignment="textEnd"
+            android:textColor="@color/bloodorange"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/editDropoff"
+            app:layout_constraintHorizontal_bias="0.731"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailPickup" />
 
-    <TextView
-        android:id="@+id/detailPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/price"
-        android:textAlignment="textEnd"
-        android:textColor="@color/bloodorange"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editPrice"
-        app:layout_constraintHorizontal_bias="0.806"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailDropoff" />
+        <TextView
+            android:id="@+id/detailPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/price"
+            android:textAlignment="textEnd"
+            android:textColor="@color/bloodorange"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/editPrice"
+            app:layout_constraintHorizontal_bias="0.806"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailDropoff" />
 
-    <TextView
-        android:id="@+id/detailDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/date"
-        android:textAlignment="textEnd"
-        android:textColor="@color/bloodorange"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editDate"
-        app:layout_constraintHorizontal_bias="0.865"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailPhoneNo" />
+        <TextView
+            android:id="@+id/detailDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/date"
+            android:textAlignment="textEnd"
+            android:textColor="@color/bloodorange"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/editDate"
+            app:layout_constraintHorizontal_bias="0.865"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailPhoneNo" />
 
-    <TextView
-        android:id="@+id/detailEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="1dp"
-        android:text="@string/email"
-        android:textAlignment="textEnd"
-        android:textColor="@color/bloodorange"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editEmail"
-        app:layout_constraintHorizontal_bias="0.804"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailDate" />
+        <TextView
+            android:id="@+id/detailEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="1dp"
+            android:text="@string/email"
+            android:textAlignment="textEnd"
+            android:textColor="@color/bloodorange"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/editEmail"
+            app:layout_constraintHorizontal_bias="0.804"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailDate" />
 
-    <EditText
-        android:id="@+id/editDate"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="viewStart"
-        android:textSize="24sp"
-        android:text="@={bookingvm.observableBooking.date}"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPhoneNumber" />
+        <EditText
+            android:id="@+id/editDate"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:text="@={bookingvm.observableBooking.date}"
+            android:textAlignment="viewStart"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editPhoneNumber" />
 
-    <TextView
-        android:id="@+id/editPhoneNumber"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="start"
-        android:inputType="phone"
-        android:text="@={bookingvm.observableBooking.phoneNumber}"
-        android:textAlignment="viewStart"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editName" />
+        <TextView
+            android:id="@+id/editPhoneNumber"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="start"
+            android:inputType="phone"
+            android:text="@={bookingvm.observableBooking.phoneNumber}"
+            android:textAlignment="viewStart"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editName" />
 
-    <EditText
-        android:id="@+id/editEmail"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="number|textEmailAddress"
-        android:textSize="16sp"
-        android:text="@={bookingvm.observableBooking.email}"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDate" />
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="number|textEmailAddress"
+            android:text="@={bookingvm.observableBooking.email}"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editDate" />
 
-    <EditText
-        android:id="@+id/editName"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textAlignment="viewStart"
-        android:textSize="24sp"
-        android:text="@={bookingvm.observableBooking.name}"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/editName"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@={bookingvm.observableBooking.name}"
+            android:textAlignment="viewStart"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/detailName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/name"
-        android:textAlignment="textEnd"
-        android:textColor="@color/bloodorange"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editName"
-        app:layout_constraintHorizontal_bias="0.831"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/detailName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="@string/name"
+            android:textAlignment="textEnd"
+            android:textColor="@color/bloodorange"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/editName"
+            app:layout_constraintHorizontal_bias="0.831"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/detailPhoneNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="8dp"
-        android:text="@string/phoneNo"
-        android:textAlignment="textEnd"
-        android:textColor="@color/bloodorange"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/editPhoneNumber"
-        app:layout_constraintHorizontal_bias="0.718"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailName" />
+        <TextView
+            android:id="@+id/detailPhoneNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/phoneNo"
+            android:textAlignment="textEnd"
+            android:textColor="@color/bloodorange"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/editPhoneNumber"
+            app:layout_constraintHorizontal_bias="0.718"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailName" />
 
-    <Button
-        android:id="@+id/editDonationButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Edit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/deleteDonationButton"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/editDonationButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/deleteDonationButton"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/deleteDonationButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Delete"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editDonationButton" />
+        <Button
+            android:id="@+id/deleteDonationButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editDonationButton" />
 
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="297dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="40dp"
-        android:entries="@array/bikeArray"
-        app:layout_constraintStart_toEndOf="@+id/detailPrice2"
-        app:layout_constraintTop_toBottomOf="@+id/editPrice" />
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="297dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="40dp"
+            android:entries="@array/bikeArray"
+            app:layout_constraintStart_toEndOf="@+id/detailPrice2"
+            app:layout_constraintTop_toBottomOf="@+id/editPrice" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

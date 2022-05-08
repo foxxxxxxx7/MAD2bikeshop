@@ -11,6 +11,8 @@ import com.wit.mad2bikeshop.ui.auth.LoggedInViewModel
 import timber.log.Timber
 import java.lang.Exception
 
+/* This is the ViewModel for the BookingListActivity. It is responsible for loading the bookings from
+the database and displaying them in the RecyclerView. */
 class BookingListViewModel : ViewModel() {
 
     private var bookingsList = MutableLiveData<List<BookModel>>()
@@ -24,14 +26,18 @@ class BookingListViewModel : ViewModel() {
     //var  ussser = LoggedInViewModel.liveFirebaseUser
 
 
-    init {
+  /* Calling the load function when the view model is created. */
+      init {
         load()
     }
 
-   // fun findAll(): List<BookModel> {
-   //     return BookManager.bookings
-   // }
+    // fun findAll(): List<BookModel> {
+    //     return BookManager.bookings
+    // }
 
+    /**
+     * It loads the bookings from the Firebase database.
+     */
     fun load() {
         try {
             readOnly.value = false
@@ -43,7 +49,7 @@ class BookingListViewModel : ViewModel() {
             FirebaseDBManager.findAll(
 //                liveFirebaseUser.value?.uid!!,
                 user?.uid!!,
-               // "3kl1HSOCtVa7gLexgdnDgmzhRun1",
+                // "3kl1HSOCtVa7gLexgdnDgmzhRun1",
                 bookingsList
             )
             Timber.i("Booking List Load Success : ${bookingsList.value.toString()}")
@@ -52,17 +58,28 @@ class BookingListViewModel : ViewModel() {
         }
     }
 
+    /**
+     * It deletes a booking from the database.
+     *
+     * @param userid The userid of the user who is logged in.
+     * @param id The id of the booking
+     */
     fun delete(userid: String, id: String) {
         try {
             //DonationManager.delete(userid,id)
-            FirebaseDBManager.delete(userid,id)
+            FirebaseDBManager.delete(userid, id)
             Timber.i("Booking Deleted ")
-        }
-        catch (e: Exception) {
+        } catch (e: Exception) {
             Timber.i("Booking Delete Error : $e.message")
         }
     }
 
+    /**
+     * It deletes a booking from the database.
+     *
+     * @param userid The user's ID.
+     * @param uid The unique id of the booking list
+     */
     fun del(userid: String, uid: String) {
         try {
             //DonationManager.delete(userid,id)
@@ -73,13 +90,16 @@ class BookingListViewModel : ViewModel() {
         }
     }
 
+    /**
+     * The function is called loadAll() and it's a public function that takes no parameters and returns
+     * nothing
+     */
     fun loadAll() {
         try {
             readOnly.value = true
             FirebaseDBManager.findAll(bookingsList)
             Timber.i("Booking List LoadAll Success : ${bookingsList.value.toString()}")
-        }
-        catch (e: Exception) {
+        } catch (e: Exception) {
             Timber.i("Booking List LoadAll Error : $e.message")
         }
     }

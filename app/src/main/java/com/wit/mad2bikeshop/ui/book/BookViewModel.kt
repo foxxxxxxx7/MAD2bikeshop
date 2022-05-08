@@ -9,6 +9,9 @@ import com.wit.mad2bikeshop.firebase.FirebaseImageManager
 import com.wit.mad2bikeshop.model.BookManager
 import com.wit.mad2bikeshop.model.BookModel
 
+/* This is the ViewModel class for the Booking page. It is used to store and manage UI-related data in
+a lifecycle conscious way. This allows data to survive configuration changes such as screen
+rotations. */
 class BookViewModel : ViewModel() {
 
     private val status = MutableLiveData<Boolean>()
@@ -16,11 +19,20 @@ class BookViewModel : ViewModel() {
     val observableStatus: LiveData<Boolean>
         get() = status
 
-    fun addBook(firebaseUser: MutableLiveData<FirebaseUser>,
-                booking: BookModel) {
+    /**
+     * This function takes in a FirebaseUser and a BookModel and adds the BookModel to the Firebase
+     * database
+     *
+     * @param firebaseUser The user who is logged in.
+     * @param booking BookModel - This is the model class that we created earlier.
+     */
+    fun addBook(
+        firebaseUser: MutableLiveData<FirebaseUser>,
+        booking: BookModel
+    ) {
         status.value = try {
             booking.profilepic = FirebaseImageManager.imageUri.value.toString()
-            FirebaseDBManager.create(firebaseUser,booking)
+            FirebaseDBManager.create(firebaseUser, booking)
             true
         } catch (e: IllegalArgumentException) {
             false

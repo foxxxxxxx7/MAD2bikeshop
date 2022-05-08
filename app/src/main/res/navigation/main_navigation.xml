@@ -33,7 +33,7 @@
         android:id="@+id/bookingDetailFragment"
         android:name="com.wit.mad2bikeshop.ui.detail.BookingDetailFragment"
         android:label="booking_detail_fragment"
-        tools:layout="@layout/fragment_booking_detail" >
+        tools:layout="@layout/fragment_booking_detail">
         <action
             android:id="@+id/action_bookingDetailFragment_to_bookingListFragment"
             app:destination="@id/bookingListFragment" />
@@ -45,7 +45,7 @@
         android:id="@+id/mapsFragment"
         android:name="com.wit.mad2bikeshop.ui.map.MapsFragment"
         android:label="Booking Maps"
-        tools:layout="@layout/fragment_maps" >
+        tools:layout="@layout/fragment_maps">
         <action
             android:id="@+id/action_mapsFragment_to_bookingDetailFragment"
             app:destination="@id/bookingDetailFragment" />

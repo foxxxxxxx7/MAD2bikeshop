@@ -6,6 +6,7 @@ import android.app.Application
 import com.wit.mad2bikeshop.model.BookStore
 import timber.log.Timber
 
+/* The `BikeshopApp` class is a subclass of the `Application` class */
 class BikeshopApp : Application() {
 
     lateinit var bookStore: BookStore
@@ -13,7 +14,7 @@ class BikeshopApp : Application() {
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
-       // bookStore = BookJSONStore(applicationContext)
+        // bookStore = BookJSONStore(applicationContext)
         Timber.i("Starting Bikeshop Application")
     }
 }

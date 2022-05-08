@@ -7,19 +7,20 @@
     android:background="@color/white"
     tools:context=".ui.splash.Splash">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1"
-    android:orientation="vertical">
-
-    <pl.droidsonroids.gif.GifImageView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight=".5"
-        android:src="@drawable/giphy"
-        />
+        android:orientation="vertical"
+        android:weightSum="1">
 
-</LinearLayout>
+        // A gif image view.
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:src="@drawable/giphy" />
+
+    </LinearLayout>
 
 </RelativeLayout>

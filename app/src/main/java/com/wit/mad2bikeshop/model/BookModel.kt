@@ -6,6 +6,7 @@ import com.google.firebase.database.IgnoreExtraProperties
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
+/* This is a data class that is used to store the data of the bookings. */
 @IgnoreExtraProperties
 @Parcelize
 data class BookModel(
@@ -24,8 +25,7 @@ data class BookModel(
     var dropoff: String = "",
     var price: Double = 20.0,
     /*var amount: Int = 0*/
-) : Parcelable
-{
+) : Parcelable {
     @Exclude
     fun toMap(): Map<String, Any?> {
         return mapOf(

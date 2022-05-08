@@ -11,15 +11,17 @@ import com.google.android.gms.location.*
 import com.google.android.gms.maps.GoogleMap
 import timber.log.Timber
 
+/* This is the ViewModel for the MapFragment. It is responsible for getting the current location of the
+user. */
 @SuppressLint("MissingPermission")
 class MapsViewModel(application: Application) : AndroidViewModel(application) {
 
-    lateinit var map : GoogleMap
+    lateinit var map: GoogleMap
     var currentLocation = MutableLiveData<Location>()
-    var locationClient : FusedLocationProviderClient
+    var locationClient: FusedLocationProviderClient
     val locationRequest = LocationRequest.create().apply {
-        interval = (2*60*1000)
-        fastestInterval = (45*1000)
+        interval = (2 * 60 * 1000)
+        fastestInterval = (45 * 1000)
         priority = LocationRequest.PRIORITY_HIGH_ACCURACY
     }
     val locationCallback = object : LocationCallback() {
@@ -28,14 +30,22 @@ class MapsViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    /* This is the initializer block of the ViewModel. It is responsible for getting the current
+    location of the user. */
     init {
         locationClient = LocationServices.getFusedLocationProviderClient(application)
-        locationClient.requestLocationUpdates(locationRequest, locationCallback,
-            Looper.getMainLooper())
+        locationClient.requestLocationUpdates(
+            locationRequest, locationCallback,
+            Looper.getMainLooper()
+        )
     }
 
+    /**
+     * > If the last location is successful, then add a success listener to the last location and set
+     * the current location to the location
+     */
     fun updateCurrentLocation() {
-        if(locationClient.lastLocation.isSuccessful)
+        if (locationClient.lastLocation.isSuccessful)
             locationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
                     currentLocation.value = location!!

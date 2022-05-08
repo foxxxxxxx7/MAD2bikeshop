@@ -18,6 +18,8 @@ import com.wit.mad2bikeshop.ui.auth.LoggedInViewModel
 import com.wit.mad2bikeshop.ui.bookingList.BookingListViewModel
 import timber.log.Timber
 
+/* This is the code for the BookingDetailFragment. It is a fragment that is used to display the details
+of a booking. */
 class BookingDetailFragment : Fragment() {
 
     companion object {
@@ -28,11 +30,21 @@ class BookingDetailFragment : Fragment() {
     private lateinit var detailViewModel: BookingDetailViewModel
     private var _fragBinding: BookingDetailFragmentBinding? = null
     private val fragBinding get() = _fragBinding!!
-    private val loggedInViewModel : LoggedInViewModel by activityViewModels()
-    private val bookingListViewModel : BookingListViewModel by activityViewModels()
+    private val loggedInViewModel: LoggedInViewModel by activityViewModels()
+    private val bookingListViewModel: BookingListViewModel by activityViewModels()
     val user = FirebaseAuth.getInstance().currentUser
 
 
+    /**
+     * The function inflates the layout, sets the title, sets up the view model, and sets up the
+     * onClickListeners for the buttons
+     *
+     * @param inflater The LayoutInflater object that can be used to inflate any views in the fragment,
+     * @param container The ViewGroup into which the new View will be added after it is bound to an
+     * adapter position.
+     * @param savedInstanceState A Bundle object containing the activity's previously saved state.
+     * @return The root view of the fragment.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,9 +67,11 @@ class BookingDetailFragment : Fragment() {
             Timber.i("RFOX")
             Timber.i(detailViewModel.observableBooking.value?.uid!!)
             Timber.i(fragBinding.bookingvm?.observableBooking!!.value!!.toString())
-            detailViewModel.updateBook(user?.uid!!,
+            detailViewModel.updateBook(
+                user?.uid!!,
                 detailViewModel.observableBooking.value?.uid!!,
-                fragBinding.bookingvm?.observableBooking!!.value!!)
+                fragBinding.bookingvm?.observableBooking!!.value!!
+            )
 
 //            (viewHolder.itemView.tag as BookModel).uid!!)
 
@@ -69,12 +83,20 @@ class BookingDetailFragment : Fragment() {
         }
 
         fragBinding.deleteDonationButton.setOnClickListener {
-            bookingListViewModel.delete(user?.uid!!,
-                detailViewModel.observableBooking.value?.uid!!)
+            bookingListViewModel.delete(
+                user?.uid!!,
+                detailViewModel.observableBooking.value?.uid!!
+            )
             findNavController().navigateUp()
         }
         return root
     }
+
+    /**
+     * `fragBinding.bookingvm = detailViewModel`
+     *
+     * This is the line that binds the data to the UI
+     */
     private fun render() {
 ////        fragBinding.editMessage.setText("A Message")
 ////        fragBinding.editUpvotes.setText("0")
@@ -94,11 +116,22 @@ class BookingDetailFragment : Fragment() {
         Timber.i("Retrofit fragBinding.bookingvm == $fragBinding.bookingvm")
     }
 
+    /**
+     * The function is called when the activity is resumed. It calls the getBooking function in the
+     * detailViewModel, which is a ViewModel class. The getBooking function is called with the user's
+     * uid and the bookingid passed in as arguments
+     */
     override fun onResume() {
         super.onResume()
-        detailViewModel.getBooking(user?.uid!!,
-            args.bookingid)
+        detailViewModel.getBooking(
+            user?.uid!!,
+            args.bookingid
+        )
     }
+
+    /**
+     * It sets the binding variable to null.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _fragBinding = null

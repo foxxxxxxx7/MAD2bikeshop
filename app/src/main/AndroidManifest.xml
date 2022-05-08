@@ -2,9 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wit.mad2bikeshop">
 
+    // Allowing the app to access the location of the user.
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
+
+    // This is the application tag. It is the root element of the AndroidManifest.xml file. It contains
+    // subelements that declare each of the application components and has attributes that can affect
+    // all the components.
     <application
         android:name=".main.BikeshopApp"
         android:allowBackup="true"
@@ -14,34 +19,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MAD2bikeshop.NoActionBar">
 
-        <!--
-             TODO: Before you run your application, you need a Google Maps API key.
-
-             To get one, follow the directions here:
-
-                https://developers.google.com/maps/documentation/android-sdk/get-api-key
-
-             Once you have your API key (it starts with "AIza"), define a new property in your
-             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
-             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
-        -->
+        // This is the API key for the Google Maps API.
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBjZGTG0f8bCqg6Bb0YmyXOj0PuZN-TE_M" />
+        // Preloading the fonts.
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
+        // The first activity that is launched when the app is opened.
         <activity
             android:name=".ui.splash.Splash"
             android:exported="true"
             android:theme="@style/Theme.MAD2bikeshop.Splash">
+            // The first activity that is launched when the app is opened.
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        // Declaring the activities that are used in the app.
         <activity android:name=".ui.auth.Login" />
 
         <activity android:name=".ui.home.Home" />
