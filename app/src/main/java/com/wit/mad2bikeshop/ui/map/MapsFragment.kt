@@ -45,21 +45,21 @@ class MapsFragment : Fragment() {
                 mapsViewModel.currentLocation.value!!.latitude,
                 mapsViewModel.currentLocation.value!!.longitude
             )
-            val waterfordDepot = LatLng(52.260791, -7.105922)
-            val kilmacthomasDepot = LatLng(52.204365250330284, -7.425864411634394)
-            val dungarvanDepot = LatLng(52.08538860777265, -7.623179554066156)
-
-
-            googleMap.addMarker(
-                MarkerOptions().position(waterfordDepot).title("Viking Bike Hire Waterford Depot")
-            )
-            googleMap.addMarker(
-                MarkerOptions().position(kilmacthomasDepot)
-                    .title("Viking Bike Hire Kilmacthomas Depot")
-            )
-            googleMap.addMarker(
-                MarkerOptions().position(dungarvanDepot).title("Viking Bike Hire Dungarvan Depot")
-            )
+//            val waterfordDepot = LatLng(52.260791, -7.105922)
+//            val kilmacthomasDepot = LatLng(52.204365250330284, -7.425864411634394)
+//            val dungarvanDepot = LatLng(52.08538860777265, -7.623179554066156)
+//
+//
+//            googleMap.addMarker(
+//                MarkerOptions().position(waterfordDepot).title("Viking Bike Hire Waterford Depot")
+//            )
+//            googleMap.addMarker(
+//                MarkerOptions().position(kilmacthomasDepot)
+//                    .title("Viking Bike Hire Kilmacthomas Depot")
+//            )
+//            googleMap.addMarker(
+//                MarkerOptions().position(dungarvanDepot).title("Viking Bike Hire Dungarvan Depot")
+//            )
 
             mapsViewModel.map.uiSettings.isZoomControlsEnabled = true
             mapsViewModel.map.uiSettings.isMyLocationButtonEnabled = true
@@ -108,6 +108,22 @@ class MapsFragment : Fragment() {
     private fun render(bookingsList: ArrayList<BookModel>) {
         if (!bookingsList.isEmpty()) {
             mapsViewModel.map.clear()
+
+            val waterfordDepot = LatLng(52.260791, -7.105922)
+            val kilmacthomasDepot = LatLng(52.204365250330284, -7.425864411634394)
+            val dungarvanDepot = LatLng(52.08538860777265, -7.623179554066156)
+
+            mapsViewModel.map.addMarker(
+                MarkerOptions().position(waterfordDepot).title("Viking Bike Hire Waterford Depot")
+            )
+            mapsViewModel.map.addMarker(
+                MarkerOptions().position(kilmacthomasDepot)
+                    .title("Viking Bike Hire Kilmacthomas Depot")
+            )
+            mapsViewModel.map.addMarker(
+                MarkerOptions().position(dungarvanDepot).title("Viking Bike Hire Dungarvan Depot")
+            )
+
             bookingsList.forEach {
                 mapsViewModel.map.addMarker(
                     MarkerOptions().position(LatLng(it.latitude, it.longitude))
