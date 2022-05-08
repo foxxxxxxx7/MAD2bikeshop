@@ -5,19 +5,21 @@ Robert Fox
 
 https://github.com/foxxxxxxx7/MAD2bikeshop
 
-vids: https://1drv.ms/u/s!AkuT6BwCbuPD2n7o9_UmsJ-GPvPj?e=V31h3W
-
- App to create a booking for a bike.
+ App to manage bookings for a bikeshop
 
 * Create booking
-* Choose pickup and dropoff locations using maps
-* Choose from a selection of bikes
-* Tally up order total
 * View Bookings
 * Update upcoming bookings
 * Cancel/Delete upcoming booking
-* Confirmation email
 * Menu
-* AboutUs
 * NavDrawer
+* User Support
+* Google Sign In
+* Google Maps API to track bookings
+* Profile Picture
+* Firebase Storage
+* Firebase Realtime Database
+* Firebase Authorisation
+* Model View ViewModel architecture
+
  
