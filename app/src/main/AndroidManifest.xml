@@ -31,7 +31,8 @@
 
         <activity
             android:name=".ui.splash.Splash"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.MAD2bikeshop.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

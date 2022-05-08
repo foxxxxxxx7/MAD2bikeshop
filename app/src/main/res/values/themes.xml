@@ -19,6 +19,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.MAD2bikeshop.Splash">
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item>
+    </style>
+
     <style name="Theme.MAD2bikeshop.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.MAD2bikeshop.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

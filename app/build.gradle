@@ -92,5 +92,7 @@ dependencies {
     // https://firebase.google.com/docs/android/setup#available-libraries
     /*implementation "org.jetbrains.anko:anko-commons:0.10.8"*/
 
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
+
 
 }
